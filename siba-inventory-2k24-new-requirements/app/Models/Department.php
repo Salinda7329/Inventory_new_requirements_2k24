@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     use HasFactory;
-	protected $fillable = [
+
+    protected $fillable = [
         'dept_name',
-        'created_at',
-        'updated_at',
-        'status',
-        'isactive',
+        'isActive',
     ];
 }
