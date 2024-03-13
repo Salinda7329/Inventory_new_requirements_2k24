@@ -1,0 +1,1 @@
+1. When a new user is created we don't provide a password. The user needs to create a password in the first login.

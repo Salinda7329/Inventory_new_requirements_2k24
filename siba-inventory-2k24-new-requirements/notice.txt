@@ -1,0 +1,17 @@
+HR managemant system meeting 2nd round
+
+-- employee knk add karaddi gann details (personal , education , experience , family)
+
+-- Niwadu wisthara
+
+-- Niwaduwak gaddi gann vidiya gana a flow aka
+
+-- employeesla warga (catagories)
+
+-- employeelagen gann documant visthara
+
+-- Niwadu warga saha awa gann plwan akaraya
+
+-- ensurance dena vidiya saha awa claim karagann plwan vidiya
+
+

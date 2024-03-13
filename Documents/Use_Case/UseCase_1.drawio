@@ -1,0 +1,34 @@
+<mxfile host="app.diagrams.net" modified="2023-09-14T10:46:41.627Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="GPK1o1HSyzTsKMW1YhvL" version="21.7.5" type="device">
+  <diagram name="Page-1" id="xxZ1GTi_zlJpm1Askenp">
+    <mxGraphModel dx="2034" dy="850" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="jQ25QExdeKSyNhV2qCMg-2" value="&lt;b&gt;DepartmentAdminUser&lt;/b&gt;&lt;br&gt;1. View stock&lt;br&gt;2. View issued / returned items under department&lt;br&gt;3.View issued items under department employee_id&lt;br&gt;4. Approve / cancel requests under department members.&lt;br&gt;5. Request items.&lt;br&gt;6. Request product (New)&lt;br&gt;7. Approve /Cancel request product.&lt;br&gt;&amp;nbsp;8.Reset password / Update profile" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-441" y="-16" width="221" height="270.5" as="geometry" />
+        </mxCell>
+        <mxCell id="jQ25QExdeKSyNhV2qCMg-3" value="&lt;b&gt;DepartmentUser&lt;/b&gt;&lt;br&gt;1. View stock&lt;br&gt;2. View issued / returned items history under their account.&lt;br&gt;3.&amp;nbsp;Request items.&lt;br&gt;4. Request product ( New )&lt;br&gt;5. Reset password / Update profile&lt;br&gt;&lt;br&gt;&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-743" y="-40" width="221" height="223.5" as="geometry" />
+        </mxCell>
+        <mxCell id="jQ25QExdeKSyNhV2qCMg-4" value="Stores Manager&lt;br&gt;1. View stock&lt;br&gt;2. Return / Issue items.&lt;br&gt;3. Request New products.&lt;br&gt;4. Update / Edit damaged or remaining item count.&lt;br&gt;5. Check and Accept new products/ no of items.&lt;br&gt;6. Update stores log ( Confirming physically checked the stores.)&lt;br&gt;7. View issued / returned items under department&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;8. View issued items under department epf" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-145" y="-11" width="211" height="381" as="geometry" />
+        </mxCell>
+        <mxCell id="jQ25QExdeKSyNhV2qCMg-5" value="Purchasing Manager&lt;br&gt;1. Add new items when received.&lt;br&gt;&amp;nbsp;2.View stock&lt;br&gt;3.&amp;nbsp;Approve / Cancel New product.&lt;br&gt;4. Request New products.&lt;br&gt;5. Approve / Cancel Update / Edit damaged or remaining item count.&lt;br&gt;6. Check and Accept new products/ no of items.&lt;br&gt;7. Approve stores log ( Confirming physically checked the stores.)&lt;br&gt;8. Prepare and Send purchasing order after approval." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="122" y="16" width="228" height="349" as="geometry" />
+        </mxCell>
+        <mxCell id="jQ25QExdeKSyNhV2qCMg-7" value="Top Management&lt;br&gt;1. Approve / cancel purchasing requests.&lt;br&gt;2.View stock.&lt;br&gt;3. Approve new products.&lt;br&gt;4. Update stores log ( Confirming physically checked the stores.)&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;&quot;&gt;5. View issued / returned items under department&lt;/span&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;span style=&quot;&quot;&gt;6. View issued items under department employee_id&lt;br&gt;7. Approve purchasing orders&lt;br&gt;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="385" y="12" width="475" height="165" as="geometry" />
+        </mxCell>
+        <mxCell id="jQ25QExdeKSyNhV2qCMg-8" value="&lt;b&gt;System Admin ( Api )&lt;/b&gt;&lt;br&gt;1. Manage / Assign / Edit user roles&lt;br&gt;2. Search users&lt;br&gt;&lt;br&gt;&lt;br&gt;&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-1011" y="-15" width="221" height="153" as="geometry" />
+        </mxCell>
+        <mxCell id="jQ25QExdeKSyNhV2qCMg-9" value="User Profile&lt;br&gt;&lt;b&gt;User role &lt;/b&gt;EX: Department user, &lt;br&gt;Stores manager, Purchasing manager&lt;br&gt;&lt;b&gt;&lt;br&gt;Username &lt;/b&gt;( unique)&lt;br&gt;&lt;b&gt;UserID &lt;/b&gt;( Employee ID)&lt;br&gt;&lt;b&gt;First_name&lt;br&gt;Last_name&lt;br&gt;Phone&lt;br&gt;Email&lt;br&gt;Department&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-1030" y="-274" width="287" height="223" as="geometry" />
+        </mxCell>
+        <mxCell id="jQ25QExdeKSyNhV2qCMg-10" value="&lt;b&gt;First time users must insert the relevant details and create a new account.&lt;br&gt;This account will have normal user permission by default.&lt;br&gt;System admin will assign special user permissions.&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-1022" y="271" width="581" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
