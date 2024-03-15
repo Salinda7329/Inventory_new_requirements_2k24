@@ -49,6 +49,12 @@
             </a>
         </li>
 
+        <li class="menu-item">
+            <a href="/pm/addNewPONew" class="menu-link">
+                <div data-i18n="Without menu">Purchasing Orders</div>
+            </a>
+        </li>
+
 
 
         {{-- <li class="menu-item">

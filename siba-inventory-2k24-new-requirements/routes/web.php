@@ -6,6 +6,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ItemsNewController;
+use App\Http\Controllers\PoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\StoreManagerDashboardController;
@@ -78,6 +79,12 @@ Route::middleware([
     //     return view('PurchasingManager.PM-home');
     // })->name('pm.addNewProduct');
 
+    //po page
+    Route::get('/pm/addNewPONew', function () {
+        return view('PurchasingManager.add-new-po');
+    });
+    // create new po
+    Route::post('/pm/newPo', [PoController::class, 'create']);
     //add new products page
     Route::get('/pm/addNewProduct', function () {
         return view('PurchasingManager.add-new-product');
