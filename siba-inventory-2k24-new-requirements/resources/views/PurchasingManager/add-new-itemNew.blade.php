@@ -7,14 +7,18 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>User Dashboard | ERP | SIBA Dynamics</title>
+    <title>Add new Items | Inventory | SIBA Campus</title>
 
     <meta name="description" content="" />
 
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
-    @include('libraries.style')
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
+    <!-- Then include DataTables CSS and JavaScript -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,9 +47,9 @@
     <script src="../assets/js/config.js"></script>
 </head>
 
-<body style>
+<body>
 
-    @include('DepartmentUser.DUComponent.user-side-menu')
+    @include('PurchasingManager.PMComponents.PM-SideMenu')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -63,9 +67,8 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
-                    @include('DepartmentUser.DUComponent.home-item')
+                    @include('PurchasingManager.PMComponents.addNewItemNew')
 
-                    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
                     <script src="../assets/vendor/libs/popper/popper.js"></script>
                     <script src="../assets/vendor/js/bootstrap.js"></script>
                     <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>

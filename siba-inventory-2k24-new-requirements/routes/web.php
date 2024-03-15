@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\ItemsNewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RequestsController;
 use App\Http\Controllers\StoreManagerDashboardController;
@@ -146,16 +147,32 @@ Route::middleware([
     Route::get('/pm/addNewItem', function () {
         return view('PurchasingManager.add-new-item');
     })->name('pm.item');
+    //view to add new itemNew
+    Route::get('/pm/addNewItemNew', function () {
+        return view('PurchasingManager.add-new-itemNew');
+    })->name('pm.item');
     // create new item
     Route::post('/pm/newItem', [ItemsController::class, 'create'])->name('pm.newItem');
+    // create new itemNew
+    Route::post('/pm/newItemnew', [ItemsNewController::class, 'create']);
+
+
     //route to fetch all item data ( Not for users)
     Route::get('/pm/home/fetchAllItemData', [ItemsController::class, 'fetchAllItemData'])->name('fetchAllItemData');
+    //route to fetch all itemNew data ( Not for users)
+    Route::get('/pm/home/fetchAllItemDataNew', [ItemsNewController::class, 'fetchAllItemDataNew']);
+
+
     //route to fetch all item data ( Only for users)
     Route::get('/user/home/fetchAllItemData', [ItemsController::class, 'fetchAllItemDataUser'])->name('fetchAllItemDataUser');
-    //route to edit product data
+    //route to edit item data
     Route::get('/pm/Item/edit', [ItemsController::class, 'edit'])->name('item.edit');
+    //route to edit itemnew data
+    Route::get('/pm/Item/editnew', [ItemsNewController::class, 'edit'])->name('item.editnew');
     //route to update item data
     Route::post('/pm/Item/update', [ItemsController::class, 'update'])->name('item.update');
+    //route to update item dataNew
+    Route::post('/pm/Item/updateNew', [ItemsNewController::class, 'update'])->name('item.updateNew');
 
 
 

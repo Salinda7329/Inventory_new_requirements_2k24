@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class ItemsNew extends Model
+{
+    use HasFactory;
+    use HasFactory;
+    protected $fillable = [
+        'item_name',
+        'category_id',
+        'items_remaining',
+        'created_by',
+        'isActive'
+    ];
+
+    public function getIsActiveItemAttribute()
+    {
+        $status = [
+            1 => '<span style="color: green;">Active</span>',
+            2 => '<span style="color: red;">Deactivated</span>',
+            3 => '<span style="color: red;">Deleted</span>',
+            // Add more roles as needed
+        ];
+
+        return $status[$this->attributes['isActive']] ?? 'Unknown Status';
+    }
+}

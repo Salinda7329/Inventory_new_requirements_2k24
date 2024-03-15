@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('item_id')->nullable()->constrained('items');
+            $table->foreignId('item_id')->nullable()->constrained('itemsnew');
             $table->string('count')->nullable();
             $table->foreignId('issued_to')->nullable()->constrained('departments');
             $table->string('issue_remark')->nullable();

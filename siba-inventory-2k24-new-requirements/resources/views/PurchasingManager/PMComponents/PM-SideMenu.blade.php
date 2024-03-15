@@ -34,25 +34,6 @@
             <a href="/pm/product-limits" class="menu-link">
                 <div data-i18n="Without menu">Check Product Limits</div>
             </a>
-            {{-- <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">Store</div>
-            </a>
-
-            <ul class="menu-sub">
-                <li class="menu-item" id="3">
-                    <a href="/pm/viewProducts" class="menu-link">
-                        <div data-i18n="Without menu">View Store</div>
-                    </a>
-                </li>
-            </ul>
-            <ul class="menu-sub">
-                <li class="menu-item" id="4">
-                    <a href="/pm/product-limits" class="menu-link">
-                        <div data-i18n="Without menu">Check Product Limits</div>
-                    </a>
-                </li>
-            </ul> --}}
         </li>
 
 
@@ -62,33 +43,15 @@
             </a>
         </li>
 
-        {{-- <li class="menu-item" id="5">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-          <i class="menu-icon tf-icons bx bx-layout"></i>
-          <div data-i18n="Layouts">Manage Requests</div>
-        </a>
-
-        <ul class="menu-sub">
-          <li class="menu-item" id="6">
-            <a href="/pm/ViewRequestedItems" class="menu-link">
-              <div data-i18n="Without menu">View Inventory Request</div>
-            </a>
-          </li>
-          <li class="menu-item" id="7">
-            <a href="layouts-without-navbar.html" class="menu-link">
-              <div data-i18n="Without navbar">View My Request</div>
-            </a>
-          </li>
-          <li class="menu-item" id="8">
-            <a href="layouts-container.html" class="menu-link">
-              <div data-i18n="Container">View Request History</div>
-            </a>
-          </li>
-        </ul>
-      </li> --}}
-
-
         <li class="menu-item">
+            <a href="/pm/addNewItemNew" class="menu-link">
+                <div data-i18n="Without menu">Items</div>
+            </a>
+        </li>
+
+
+
+        {{-- <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Items</div>
@@ -101,7 +64,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -163,7 +126,6 @@
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">View All Returns</div>
             </a>
-            <!-- Components -->
         </li>
 
 
@@ -178,7 +140,6 @@
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">View Processing Returns</div>
             </a>
-            <!-- Components -->
         </li>
 
 
@@ -205,40 +166,5 @@
             </a>
         </li>
 
-        <!-- Extended components -->
-
-
-        {{-- <!-- Forms & Tables -->
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Human Resource</span></li>
-        <!-- Forms -->
-        <li class="menu-item" id="18">
-            <a href="/store/low-quentity" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Low Quentity</div>
-            </a>
-
-
-            <!-- Forms -->
-
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Finance</span></li>
-        <!-- Forms -->
-        <li class="menu-item" id="19">
-            <a href="/view-requested-items" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">View Request</div>
-            </a>
-
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Examination</span></li>
-        <!-- Forms -->
-        <li class="menu-item" id="20">
-            <a href="/store/History" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Check History</div>
-            </a>
-        </li>
-
-        <!-- Misc -->
-
-        </li> --}}
     </ul>
 </aside>
