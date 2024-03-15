@@ -89,6 +89,9 @@ Route::middleware([
     Route::get('/fetchAllPoData', [PoController::class, 'fetchAllPoData']);
     //route to view the po image
     Route::get('/view/po/image/{po_no}', [PoController::class, 'viewPoImage'])->name('view.po.image');
+ //route to edit itemnew data
+ Route::get('/pm/po/edit', [PoController::class, 'edit']);
+
 
     //add new products page
     Route::get('/pm/addNewProduct', function () {

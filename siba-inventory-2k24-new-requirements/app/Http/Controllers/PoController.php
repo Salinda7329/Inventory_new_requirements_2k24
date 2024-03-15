@@ -99,7 +99,7 @@ class PoController extends Controller
                         <td>" . $porder->createdByUser->name . "</td>
                         <td style='color: $statusColor'>$statusText</td>
                         <td>" . $porder->updated_at . "</td>
-                        <td><a href='#' id='" . $porder->id . "'  data-bs-toggle='modal' data-bs-target='#modaleditproduct' class='editProductButton'>Edit</a></td>
+                        <td><a href='#' id='" . $porder->id . "'  data-bs-toggle='modal' data-bs-target='#modaleditpo' class='editPoButton'>Edit</a></td>
                 </tr>";
 
             }
@@ -122,5 +122,12 @@ class PoController extends Controller
 
         // Pass the $porder data and $pdfUrl to the view for displaying the PDF
         return view('PurchasingManager.PMComponents.view-po-image', compact('porder'));
+    }
+
+    public function edit(Request $request)
+    {
+        $po_Id = $request->po_Id;
+        $po = Porder::find($po_Id);
+        return response()->json($po);
     }
 }

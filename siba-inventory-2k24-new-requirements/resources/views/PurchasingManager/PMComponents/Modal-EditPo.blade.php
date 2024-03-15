@@ -1,12 +1,12 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="modaledititem" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="modaleditpo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Edit Item New</h5>
+                <h5 class="modal-title" id="staticBackdropLabel">Edit Purchasing Order</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -14,51 +14,26 @@
 
                 <form id="UpdateItemDetailsForm" class="mb-3" method="POST" action="#">
                     @csrf
-
-                    {{-- hidden id input field --}}
-                    <input type="hidden" id="item_Id_hidden2" name="item_Id_hidden">
                     {{-- hidden current user id input field --}}
                     <input type="hidden" id="user_id_hidden2" name="user_id_hidden2" value="{{ Auth::user()->id }}">
+                    {{-- hidden po id --}}
+                    <input type="hidden" id="po_id_hidden" name="po_id_hidden">
+
+                    <div id="po_image2"></div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="catagory">Item Name</label>
-                        <input type="text" class="form-control" id="item_name2" name="item_name"
-                            placeholder="Enter Item Name" />
+                        <label class="form-label" for="item-name">PO Number</label>
+                        <input type="text" class="form-control" id="po_no2" name="po_no"
+                            placeholder="Enter PO Number" />
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="brand_name">Category</label>
-                        <select class="form-select" id="category_id2" name="category_id" aria-label="brand_name">
-                            <option disabled selected hidden>Select an option</option>
-                            <option value="1">Electronic</option>
-                            <option value="2">Stationary</option>
-                            <option value="3">Cleaning</option>
-                        </select>
+                        <label class="form-label" for="item-name">PO Image</label>
+                        <input type="file" class="form-control" id="po_image" name="po_image"
+                            placeholder="Enter PO Image" />
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
-
-                    @if (Auth::user()->role == 3)
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Select Status</label>
-                            <select class="form-control" id="status2" name="isActive">
-                                <option disabled selected hidden>Select a Status</option>
-                                <option value="1">Active</option>
-                                <option value="2">Deactive</option>
-                                <option value="3">Delete</option>
-                            </select>
-                        </div>
-                    @else
-                        <div class="mb-3" style="display:none">
-                            <label for="status" class="form-label">Select Status</label>
-                            <select class="form-control" id="status2" name="isActive">
-                                <option disabled selected hidden>Select a Status</option>
-                                <option value="1">Active</option>
-                                <option value="2">Deactive</option>
-                                <option value="3">Delete</option>
-                            </select>
-                        </div>
-                    @endif
 
                     <button class="btn btn-primary d-grid w-100" id="Update_item_button">Update</button>
                 </form>
@@ -78,34 +53,34 @@
                         fetchAllPoData();
 
                         //edit user button
-                        $(document).on('click', '.editItemButton', function(e) {
+                        $(document).on('click', '.editPoButton', function(e) {
                             e.preventDefault();
-                            let item_Id = $(this).attr('id');
+                            let po_Id = $(this).attr('id');
                             // alert(id);
 
                             $.ajax({
-                                url: '{{ route('item.editnew') }}',
+                                url: '/pm/po/edit',
                                 method: 'get',
                                 data: {
-                                    item_Id: item_Id,
+                                    po_Id: po_Id,
                                     _token: '{{ csrf_token() }}'
                                 },
                                 success: function(response) {
-
-                                    console.log(response.po_no);
                                     // Set id value to the hidden field
-                                    $('#item_Id_hidden2').val(response.id);
-                                    $('#item_name2').val(response.item_name);
-                                    $('#category_id2').val(response.category_id);
-                                    $('#status2').val(response.isActive);
-
+                                    $('#po_id_hidden').val(response.id);
+                                    $('#po_no2').val(response.po_no);
+                                    // Construct the full image URL using the base URL and the image name from the response
+                                    var imageUrl = 'http://127.0.0.1:8000/storage/assets/po_images/' +
+                                        response.image;
+                                    $('#po_image2').html(
+                                        '<img src="' + imageUrl + '" width="100px" height="100px" class="img-fluid img-thumbnail">'
+                                    );
                                 }
-
 
                             });
 
 
-                        })
+                        });
 
                         function fetchAllPoData() {
                             $.ajax({
@@ -118,7 +93,9 @@
                                     $('#all_po_data').DataTable({
                                         // Enable horizontal scrolling
                                         // "scrollX": true,
-                                        order: [[0, 'desc']]
+                                        order: [
+                                            [0, 'desc']
+                                        ]
                                     });
                                 }
 
