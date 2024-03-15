@@ -75,7 +75,7 @@
                         });
 
                         // fetch item data from database
-                        fetchAllItemData();
+                        fetchAllPoData();
 
                         //edit user button
                         $(document).on('click', '.editItemButton', function(e) {
@@ -107,15 +107,15 @@
 
                         })
 
-                        function fetchAllItemData() {
+                        function fetchAllPoData() {
                             $.ajax({
-                                url: '/pm/home/fetchAllItemDataNew',
+                                url: '/fetchAllPoData',
                                 method: 'get',
                                 success: function(response) {
                                     // console.log(response);
                                     $('#show_all_item_data').html(response);
                                     // //Make table a data table
-                                    $('#all_item_data').DataTable({
+                                    $('#all_po_data').DataTable({
                                         // Enable horizontal scrolling
                                         // "scrollX": true,
                                         order: [[0, 'desc']]
@@ -147,7 +147,7 @@
                                         $('#UpdateItemDetailsForm')[0].reset();
                                         $('#modaledititem').modal('hide');
                                         // fetch product data from database
-                                        fetchAllItemData();
+                                        fetchAllPoData();
 
                                     }
                                 }

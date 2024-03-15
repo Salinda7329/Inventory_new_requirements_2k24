@@ -70,8 +70,8 @@
                 });
 
 
-                // fetch item data from database
-                fetchAllItemData();
+                // fetch all po data from database
+                fetchAllPoData();
 
                 // Add a submit event listener to the form
                 form.submit(function(event) {
@@ -104,7 +104,7 @@
                                 // You can update the UI or perform other actions here
 
                                 //fetch product data from database function
-                                fetchAllItemData();
+                                fetchAllPoData();
                             } else if (response.status === 422) {
                                 // Handle validation errors
                                 var errors = response.errors;
@@ -138,15 +138,15 @@
                     $('.input-error').hide();
                 });
 
-                function fetchAllItemData() {
+                function fetchAllPoData() {
                     $.ajax({
-                        url: '/pm/home/fetchAllItemDataNew',
+                        url: '/fetchAllPoData',
                         method: 'get',
                         success: function(response) {
                             // console.log(response);
                             $('#show_all_item_data').html(response);
                             // //Make table a data table
-                            $('#all_item_data').DataTable({
+                            $('#all_po_data').DataTable({
                                 // Enable horizontal scrolling
                                 // "scrollX": true,
                                 order: [

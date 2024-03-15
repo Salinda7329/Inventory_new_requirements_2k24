@@ -40,4 +40,77 @@ class PoController extends Controller
             return response()->json(['error' => 'Failed to create product.', 'status' => 500]);
         }
     }
+
+    public function fetchAllPoData()
+    {
+
+        $porders = Porder::all();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($porders->count() > 0) {
+
+            $response .=
+                "<table id='all_po_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>PO_No</th>
+                        <th>Image</th>
+                        <th>Input Date</th>
+                        <th>Created By</th>
+                        <th>Status</th>
+                        <th>Updated At</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($porders as $porder) {
+
+                // Determine status color and text
+                $statusColor = '';
+                $statusText = '';
+
+                switch ($porder->isActive) {
+                    case 1:
+                        $statusColor = 'green';
+                        $statusText = 'Active';
+                        break;
+                    case 2:
+                        $statusColor = 'red';
+                        $statusText = 'Deactivated';
+                        break;
+                    case 3:
+                        $statusColor = 'gray';
+                        $statusText = 'Deleted';
+                        break;
+                    default:
+                        $statusColor = 'black';
+                        $statusText = 'Unknown';
+                }
+
+                $response .=
+                    "<tr>
+                            <td>" . $porder->po_no . "</td>
+                            <td><img src='" . asset('storage/po_images/' . $porder->image) . "' width='50px' height='50px' class='img-thumbnail rounded-circle'></td>
+                            <td>" . $porder->created_at . "</td>
+                            <td>" . $porder->createdByUser->name . "</td>
+                            <td style='color: $statusColor'>$statusText</td>
+                            <td>" . $porder->updated_at . "</td>
+                            <td><a href='#' id='" . $porder->id . "'  data-bs-toggle='modal'
+                            data-bs-target='#modaleditproduct' class='editProductButton'>Edit</a>
+                            </td>
+                        </tr>";
+            }
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 }

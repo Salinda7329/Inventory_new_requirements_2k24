@@ -15,4 +15,9 @@ class Porder extends Model
         'isActive',
         // ... other attributes
     ];
+
+    public function createdByUser()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 }
