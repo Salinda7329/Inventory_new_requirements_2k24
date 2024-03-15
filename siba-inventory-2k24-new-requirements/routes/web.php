@@ -87,6 +87,9 @@ Route::middleware([
     Route::post('/pm/newPo', [PoController::class, 'create']);
     //route to fetch all po data
     Route::get('/fetchAllPoData', [PoController::class, 'fetchAllPoData']);
+    //route to view the po image
+    Route::get('/view/po/image/{po_no}', [PoController::class, 'viewPoImage'])->name('view.po.image');
+
     //add new products page
     Route::get('/pm/addNewProduct', function () {
         return view('PurchasingManager.add-new-product');

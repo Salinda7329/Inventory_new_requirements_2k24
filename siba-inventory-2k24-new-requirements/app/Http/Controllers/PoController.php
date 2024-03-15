@@ -6,6 +6,7 @@ use App\Models\Porder;
 use Doctrine\DBAL\Query\QueryException;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PoController extends Controller
 {
@@ -13,7 +14,8 @@ class PoController extends Controller
     {
         $file = $request->file('po_image');
         $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/po_images', $fileName);
+        $file->storeAs('public/assets/po_images', $fileName);
+
 
         try {
             $input = $request->validate([
@@ -25,7 +27,7 @@ class PoController extends Controller
 
             Porder::create([
                 'po_no' => $input['po_no'],
-                'image' =>$fileName,
+                'image' => $fileName,
                 'created_by' => $input['user_id_hidden'],
             ]);
 
@@ -89,19 +91,17 @@ class PoController extends Controller
                         $statusColor = 'black';
                         $statusText = 'Unknown';
                 }
-
                 $response .=
-                    "<tr>
-                            <td>" . $porder->po_no . "</td>
-                            <td><img src='" . asset('storage/po_images/' . $porder->image) . "' width='50px' height='50px' class='img-thumbnail rounded-circle'></td>
-                            <td>" . $porder->created_at . "</td>
-                            <td>" . $porder->createdByUser->name . "</td>
-                            <td style='color: $statusColor'>$statusText</td>
-                            <td>" . $porder->updated_at . "</td>
-                            <td><a href='#' id='" . $porder->id . "'  data-bs-toggle='modal'
-                            data-bs-target='#modaleditproduct' class='editProductButton'>Edit</a>
-                            </td>
-                        </tr>";
+                "<tr>
+                        <td>" . $porder->po_no . "</td>
+                        <td><a href='" . route('view.po.image', ['po_no' => $porder->po_no]) . "'><img src='" . asset('storage/assets/po_images/' . $porder->image) . "' width='50px' height='50px' class='img-thumbnail rounded-circle'></a></td>
+                        <td>" . $porder->created_at . "</td>
+                        <td>" . $porder->createdByUser->name . "</td>
+                        <td style='color: $statusColor'>$statusText</td>
+                        <td>" . $porder->updated_at . "</td>
+                        <td><a href='#' id='" . $porder->id . "'  data-bs-toggle='modal' data-bs-target='#modaleditproduct' class='editProductButton'>Edit</a></td>
+                </tr>";
+
             }
 
             $response .=
@@ -112,5 +112,15 @@ class PoController extends Controller
         } else {
             echo "<h3 align='center'>No Records in Database</h3>";
         }
+    }
+
+    public function viewPoImage($po_no)
+    {
+        // Retrieve the PO record by PO number
+        $porder = Porder::where('po_no', $po_no)->firstOrFail();
+
+
+        // Pass the $porder data and $pdfUrl to the view for displaying the PDF
+        return view('PurchasingManager.PMComponents.view-po-image', compact('porder'));
     }
 }

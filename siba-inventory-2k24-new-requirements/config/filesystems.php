@@ -36,10 +36,13 @@ return [
             'throw' => false,
         ],
 
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
+            // 'root' => public_path('assets/po_images'), // Update the root path
+            // 'url' => env('APP_URL').'/assets/po_images', // Update the URL
             'visibility' => 'public',
             'throw' => false,
         ],
