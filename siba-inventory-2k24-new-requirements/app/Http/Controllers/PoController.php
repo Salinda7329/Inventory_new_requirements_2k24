@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemsNew;
 use App\Models\Porder;
 use Doctrine\DBAL\Query\QueryException;
 use Dotenv\Exception\ValidationException;
@@ -92,7 +93,7 @@ class PoController extends Controller
                         $statusText = 'Unknown';
                 }
                 $response .=
-                "<tr>
+                    "<tr>
                         <td>" . $porder->po_no . "</td>
                         <td><a href='" . route('view.po.image', ['po_no' => $porder->po_no]) . "'><img src='" . asset('storage/assets/po_images/' . $porder->image) . "' width='50px' height='50px' class='img-thumbnail rounded-circle'></a></td>
                         <td>" . $porder->created_at . "</td>
@@ -101,7 +102,6 @@ class PoController extends Controller
                         <td>" . $porder->updated_at . "</td>
                         <td><a href='#' id='" . $porder->id . "'  data-bs-toggle='modal' data-bs-target='#modaleditpo' class='editPoButton'>Edit</a></td>
                 </tr>";
-
             }
 
             $response .=
@@ -160,4 +160,23 @@ class PoController extends Controller
             'status' => 200,
         ]);
     }
+
+    public function fetchPoNumbers()
+    {
+        $pos = Porder::select('id', 'po_no', 'created_at')->get();
+
+        // Format the created_at field
+        $formattedPos = $pos->map(function ($po) {
+            return [
+                'id' => $po->id,
+                'po_no' => $po->po_no,
+                'created_at' => $po->created_at->format('Y-m-d H:i:s') // Format the date
+            ];
+        });
+
+        return response()->json($formattedPos);
+    }
+
+
+    
 }

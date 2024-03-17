@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InputsController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ItemsNewController;
 use App\Http\Controllers\PoController;
@@ -94,6 +95,17 @@ Route::middleware([
  //route to update po
  Route::post('/pm/po/update', [PoController::class, 'update']);
 
+// add new stock page ( input items)
+Route::get('/pm/addNewStock', function () {
+    return view('PurchasingManager.add-new-stock');
+});
+//route to fetch po numbers
+Route::get('/fetchPoNumbers', [PoController::class, 'fetchPoNumbers']);
+//route to fetch item names
+Route::get('/fetchItemName', [ItemsNewController::class, 'fetchItemName']);
+
+//create new stock post route
+Route::post('/pm/addNewStockItem', [InputsController::class, 'create']);
 
     //add new products page
     Route::get('/pm/addNewProduct', function () {

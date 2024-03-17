@@ -114,4 +114,11 @@ class ItemsNewController extends Controller
             'status' => 200,
         ]);
     }
+
+    public function fetchItemName()
+    {
+        $items = ItemsNew::select('id', 'item_name')->get(); // Select id and item_name from ItemsNew
+
+        return response()->json($items);
+    }
 }

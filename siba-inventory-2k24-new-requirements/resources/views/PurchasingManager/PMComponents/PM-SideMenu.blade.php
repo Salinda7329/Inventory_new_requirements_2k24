@@ -55,6 +55,12 @@
             </a>
         </li>
 
+        <li class="menu-item">
+            <a href="/pm/addNewStock" class="menu-link">
+                <div data-i18n="Without menu">Input Stock</div>
+            </a>
+        </li>
+
 
 
         {{-- <li class="menu-item">
