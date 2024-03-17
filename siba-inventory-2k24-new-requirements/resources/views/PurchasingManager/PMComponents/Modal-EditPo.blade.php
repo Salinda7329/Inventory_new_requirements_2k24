@@ -30,7 +30,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="item-name">PO Image</label>
-                        <input type="file" class="form-control" id="po_image" name="po_image"
+                        <input type="file" class="form-control" id="po_image_new" name="po_image_new"
                             placeholder="Enter PO Image" />
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
@@ -110,7 +110,7 @@
                             const fd = new FormData(this);
 
                             $.ajax({
-                                url: '/pm/Item/updateNew',
+                                url: '/pm/po/update',
                                 method: 'post',
                                 data: fd,
                                 cache: false,
@@ -122,7 +122,7 @@
                                     if (response.status == 200) {
                                         alert('Item updated successfully!');
                                         $('#UpdateItemDetailsForm')[0].reset();
-                                        $('#modaledititem').modal('hide');
+                                        $('#modaleditpo').modal('hide');
                                         // fetch product data from database
                                         fetchAllPoData();
 

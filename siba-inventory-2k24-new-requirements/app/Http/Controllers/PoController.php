@@ -130,4 +130,34 @@ class PoController extends Controller
         $po = Porder::find($po_Id);
         return response()->json($po);
     }
+
+    public function update(Request $request)
+    {
+
+        $fileName = '';
+        $porder = Porder::find($request->po_id_hidden);
+        //   return response()->json($student);
+        if ($request->hasFile('po_image_new')) {
+
+            $file = $request->file('po_image_new');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/assets/po_images', $fileName);
+            //if want to delete the old picture
+            if ($porder->image) {
+                Storage::delete('public/assets/po_images/' . $porder->image);
+            }
+        } else {
+            //if the existing file name
+            $fileName = $porder->po_image;
+        }
+
+        $porder->update([
+            'po_no' => $request->po_no,
+            'image' => $fileName,
+        ]);
+
+        return response()->json([
+            'status' => 200,
+        ]);
+    }
 }

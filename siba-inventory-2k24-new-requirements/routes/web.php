@@ -91,6 +91,8 @@ Route::middleware([
     Route::get('/view/po/image/{po_no}', [PoController::class, 'viewPoImage'])->name('view.po.image');
  //route to edit itemnew data
  Route::get('/pm/po/edit', [PoController::class, 'edit']);
+ //route to update po
+ Route::post('/pm/po/update', [PoController::class, 'update']);
 
 
     //add new products page
