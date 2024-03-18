@@ -61,6 +61,12 @@
             </a>
         </li>
 
+        <li class="menu-item">
+            <a href="/pm/issueItems" class="menu-link">
+                <div data-i18n="Without menu">Issue Items</div>
+            </a>
+        </li>
+
 
 
         {{-- <li class="menu-item">

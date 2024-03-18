@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InputsController;
+use App\Http\Controllers\IssuesController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ItemsNewController;
 use App\Http\Controllers\PoController;
@@ -104,10 +105,22 @@ Route::middleware([
     //route to fetch item names
     Route::get('/fetchItemName', [ItemsNewController::class, 'fetchItemName']);
 
+
     //create new stock post route
     Route::post('/pm/addNewStockItem', [InputsController::class, 'create']);
+
     //route to fetch all new stock item data
     Route::get('/fetchAllNewStockData', [InputsController::class, 'fetchAllNewStockData']);
+
+    //issue items to users
+    Route::get('/pm/issueItems', [IssuesController::class,'index']);
+    //route to fetch all item main data
+    Route::get('/fetchAllItemMainData', [IssuesController::class, 'fetchAllItemMainData']);
+    //route to fetch department names and details
+    Route::get('/fetchDepartmentData', [IssuesController::class, 'fetchDepartmentData']);
+
+        //create new issue
+        Route::post('/pm/issueItemtoDept', [IssuesController::class, 'create']);
 
     //add new products page
     Route::get('/pm/addNewProduct', function () {
