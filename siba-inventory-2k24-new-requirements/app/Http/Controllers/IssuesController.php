@@ -58,4 +58,53 @@ class IssuesController extends Controller
             return response()->json(['error' => 'Failed to Issue.', 'status' => 500]);
         }
     }
+
+    public function fetchAllIssueData()
+    {
+
+        $issues = Issue::all();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($issues->count() > 0) {
+
+            $response .=
+                "<table id='all_issue_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Issue No</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>To Department</th>
+                        <th>Issue Remark</th>
+                        <th>Issued by</th>
+                        <th>Issued At</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($issues as $issue) {
+
+                $response .=
+                    "<tr>
+                        <td>" . $issue->id . "</td>
+                        <td>" . $issue->itemName->item_name . "</td>
+                        <td>" . $issue->count . "</td>
+                        <td>" . $issue->toDepartment->dept_name . "</td>
+                        <td>" . $issue->issue_remark . "</td>
+                        <td>" . $issue->issueduserData->name . "</td>
+                        <td>" . $issue->created_at . "</td>
+                    </tr>";
+            }
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
 }

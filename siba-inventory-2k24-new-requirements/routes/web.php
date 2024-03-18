@@ -113,14 +113,16 @@ Route::middleware([
     Route::get('/fetchAllNewStockData', [InputsController::class, 'fetchAllNewStockData']);
 
     //issue items to users
-    Route::get('/pm/issueItems', [IssuesController::class,'index']);
+    Route::get('/pm/issueItems', [IssuesController::class, 'index']);
     //route to fetch all item main data
     Route::get('/fetchAllItemMainData', [IssuesController::class, 'fetchAllItemMainData']);
     //route to fetch department names and details
     Route::get('/fetchDepartmentData', [IssuesController::class, 'fetchDepartmentData']);
 
-        //create new issue
-        Route::post('/pm/issueItemtoDept', [IssuesController::class, 'create']);
+    //create new issue
+    Route::post('/pm/issueItemtoDept', [IssuesController::class, 'create']);
+     //route to fetch all issue data
+     Route::get('/fetchAllIssueData', [IssuesController::class, 'fetchAllIssueData']);
 
     //add new products page
     Route::get('/pm/addNewProduct', function () {

@@ -89,7 +89,7 @@
 
 
                 // fetch all po data from database
-                // fetchAllNewStockData();
+                fetchAllIssueData();
 
                 // Add a submit event listener to the form
                 form.submit(function(event) {
@@ -122,7 +122,7 @@
                                 // You can update the UI or perform other actions here
 
                                 //fetch product data from database function
-                                // fetchAllNewStockData();
+                                fetchAllIssueData();
                             } else if (response.status === 422) {
                                 // Handle validation errors
                                 var errors = response.errors;
@@ -156,26 +156,26 @@
                     $('.input-error').hide();
                 });
 
-                // function fetchAllNewStockData() {
-                //     $.ajax({
-                //         url: '/fetchAllNewStockData',
-                //         method: 'get',
-                //         success: function(response) {
-                //             // console.log(response);
-                //             $('#show_all_item_data').html(response);
-                //             // //Make table a data table
-                //             $('#all_new_stock_data').DataTable({
-                //                 // Enable horizontal scrolling
-                //                 // "scrollX": true,
-                //                 order: [
-                //                     [0, 'desc']
-                //                 ]
-                //             });
-                //         }
+                function fetchAllIssueData() {
+                    $.ajax({
+                        url: '/fetchAllIssueData',
+                        method: 'get',
+                        success: function(response) {
+                            // console.log(response);
+                            $('#show_all_issue_data').html(response);
+                            // //Make table a data table
+                            $('#all_issue_data').DataTable({
+                                // Enable horizontal scrolling
+                                // "scrollX": true,
+                                order: [
+                                    [0, 'desc']
+                                ]
+                            });
+                        }
 
 
-                //     });
-                // }
+                    });
+                }
 
                 // fetch items data
                 $.ajax({

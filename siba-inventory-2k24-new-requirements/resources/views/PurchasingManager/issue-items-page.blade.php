@@ -19,5 +19,5 @@
             </div>
         </div>
     </div>
-    @include('PurchasingManager.PMComponents.Modal-EditStock')
+    {{-- @include('PurchasingManager.PMComponents.Modal-EditStock') --}}
 @endsection

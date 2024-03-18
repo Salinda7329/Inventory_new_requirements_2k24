@@ -17,4 +17,19 @@ class Issue extends Model
         'isActive',
         // ... other attributes
     ];
+
+    public function itemName()
+    {
+        return $this->belongsTo(ItemsNew::class, 'item_id', 'id');
+    }
+
+    public function toDepartment()
+    {
+        return $this->belongsTo(Department::class, 'issued_to', 'id');
+    }
+
+    public function issueduserData()
+    {
+        return $this->belongsTo(User::class, 'issued_by', 'id');
+    }
 }
