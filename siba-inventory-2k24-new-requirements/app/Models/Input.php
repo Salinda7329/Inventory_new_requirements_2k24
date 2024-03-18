@@ -14,6 +14,8 @@ class Input extends Model
         'count',
         'created_by',
         'isActive',
+        'created_at',
+        'updated_at'
         // ... other attributes
     ];
 }
