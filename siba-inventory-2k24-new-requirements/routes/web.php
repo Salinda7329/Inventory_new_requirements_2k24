@@ -90,22 +90,24 @@ Route::middleware([
     Route::get('/fetchAllPoData', [PoController::class, 'fetchAllPoData']);
     //route to view the po image
     Route::get('/view/po/image/{po_no}', [PoController::class, 'viewPoImage'])->name('view.po.image');
- //route to edit itemnew data
- Route::get('/pm/po/edit', [PoController::class, 'edit']);
- //route to update po
- Route::post('/pm/po/update', [PoController::class, 'update']);
+    //route to edit itemnew data
+    Route::get('/pm/po/edit', [PoController::class, 'edit']);
+    //route to update po
+    Route::post('/pm/po/update', [PoController::class, 'update']);
 
-// add new stock page ( input items)
-Route::get('/pm/addNewStock', function () {
-    return view('PurchasingManager.add-new-stock');
-});
-//route to fetch po numbers
-Route::get('/fetchPoNumbers', [PoController::class, 'fetchPoNumbers']);
-//route to fetch item names
-Route::get('/fetchItemName', [ItemsNewController::class, 'fetchItemName']);
+    // add new stock page ( input items)
+    Route::get('/pm/addNewStock', function () {
+        return view('PurchasingManager.add-new-stock');
+    });
+    //route to fetch po numbers
+    Route::get('/fetchPoNumbers', [PoController::class, 'fetchPoNumbers']);
+    //route to fetch item names
+    Route::get('/fetchItemName', [ItemsNewController::class, 'fetchItemName']);
 
-//create new stock post route
-Route::post('/pm/addNewStockItem', [InputsController::class, 'create']);
+    //create new stock post route
+    Route::post('/pm/addNewStockItem', [InputsController::class, 'create']);
+    //route to fetch all new stock item data
+    Route::get('/fetchAllNewStockData', [InputsController::class, 'fetchAllNewStockData']);
 
     //add new products page
     Route::get('/pm/addNewProduct', function () {

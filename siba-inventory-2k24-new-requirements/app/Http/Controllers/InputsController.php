@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Input;
+use App\Models\ItemsNew;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class InputsController extends Controller
 {
@@ -10,42 +14,84 @@ class InputsController extends Controller
     {
         try {
             $input = $request->validate([
-                'user_id_hidden' => ['required'],
-                'po_no2' => ['required'],
-                'item_id2' => ['required'],
-                'item_count2' => ['required', 'string', 'max:255', 'min:0'],
-
+                'user_id_hidden' => ['required', 'numeric'], // Assuming user ID is numeric
+                'po_no2' => ['required', 'numeric'], // Assuming PO number is numeric
+                'item_id2' => ['required', 'numeric'], // Assuming item ID is numeric
+                'item_count2' => ['required', 'numeric', 'min:1'], // Minimum count is 1
             ]);
-            return DB::transaction(function () use ($input) {
-                // Use Carbon to get the current timestamp
-                $currentTimestamp = now();
-                Item::create([
-                    'created_by' => $input['user_id_hidden'],
-                    'owner' => $input['owner_hidden'],
-                    'flag_request' => 2,
-                    'flag_return' => 2,
-                    'po_no' => $input['po_no'],
-                    'product_id' => $input['product_id'],
-                    'brand_id' => $input['brand_id'],
-                    'item_name' => $input['item_name'],
-                    'condition' => $input['condition'],
-                    'condition_updated_by' => $input['user_id_hidden'],
-                    'condition_updated_timestamp' =>  $currentTimestamp,
-                    'items_remaining' => $input['items_remaining'],
-                    'lower_limit' => $input['lower_limit'],
 
-                ]);
+            Input::create([
+                'po_id' => $input['po_no2'],
+                'item_id' => $input['item_id2'],
+                'count' => $input['item_count2'],
+                'created_by' => $input['user_id_hidden'],
+            ]);
 
-                // Return the success response after the user is created
-                return response()->json(['message' => 'New item created successfully.', 'status' => 200]);
-            });
+            // Return the success response after the item is created
+            return response()->json(['message' => 'New item created successfully.', 'status' => 200]);
         } catch (ValidationException $e) {
             // Handle validation errors
             return response()->json(['errors' => $e->errors(), 'status' => 422]);
-        } catch (QueryException $e) {
-            // Log the error if needed: \Log::error($e);
+            // } catch (QueryException $e) {
+            //     // Log the error
+            //     \Log::error($e);
+            //     return response()->json(['error' => 'Failed to create item.', 'status' => 500]);
+            // }
+        }
+    }
 
-            return response()->json(['error' => 'Failed to create product.', 'status' => 500]);
+    public function fetchAllNewStockData()
+    {
+
+        $items = Input::all();
+
+        //returning data inside the table
+        $response = '';
+
+        if ($items->count() > 0) {
+
+            $response .=
+                "<table id='all_new_stock_data' class='display'>
+                    <thead>
+                        <tr>
+                        <th>Transaction No</th>
+                        <th>PO No</th>
+                        <th>Item Id</th>
+                        <th>Input Count</th>
+                        <th>Input By</th>
+                        <th>Input TimeStamp</th>
+                        <th>Updated TimeStamp</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+
+            foreach ($items as $item) {
+                $response .= "<tr>
+                                        <td>" . $item->id . "</td>
+                                        <td>" . $item->po_id . "</td>
+                                        <td>" . $item->getmainItemData->item_name . "</td>
+                                        <td>" . $item->count . "</td>
+                                        <td>" . $item->createdByUser->name . "</td>
+                                        <td>" . $item->created_at . "</td>
+                                        <td>" . $item->updated_at . "</td>
+                                        <td>" . $item->getIsActiveInputttribute() . "</td>
+                                        <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
+                                        data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
+                                        </td>
+                                    </tr>";
+            }
+
+
+
+            $response .=
+                "</tbody>
+                </table>";
+
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
         }
     }
 }

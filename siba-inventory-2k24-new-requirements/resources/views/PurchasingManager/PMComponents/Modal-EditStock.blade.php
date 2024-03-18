@@ -50,7 +50,7 @@
                         });
 
                         // fetch item data from database
-                        fetchAllPoData();
+                        fetchAllNewStockData();
 
                         //edit user button
                         $(document).on('click', '.editPoButton', function(e) {
@@ -73,7 +73,8 @@
                                     var imageUrl = 'http://127.0.0.1:8000/storage/assets/po_images/' +
                                         response.image;
                                     $('#po_image2').html(
-                                        '<img src="' + imageUrl + '" width="100px" height="100px" class="img-fluid img-thumbnail">'
+                                        '<img src="' + imageUrl +
+                                        '" width="100px" height="100px" class="img-fluid img-thumbnail">'
                                     );
                                 }
 
@@ -82,15 +83,15 @@
 
                         });
 
-                        function fetchAllPoData() {
+                        function fetchAllNewStockData() {
                             $.ajax({
-                                url: '/fetchAllPoData',
+                                url: '/fetchAllNewStockData',
                                 method: 'get',
                                 success: function(response) {
                                     // console.log(response);
                                     $('#show_all_item_data').html(response);
                                     // //Make table a data table
-                                    $('#all_po_data').DataTable({
+                                    $('#all_new_stock_data').DataTable({
                                         // Enable horizontal scrolling
                                         // "scrollX": true,
                                         order: [
@@ -124,7 +125,7 @@
                                         $('#UpdateItemDetailsForm')[0].reset();
                                         $('#modaleditpo').modal('hide');
                                         // fetch product data from database
-                                        fetchAllPoData();
+                                        fetchAllNewStockData();
 
                                     }
                                 }

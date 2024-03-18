@@ -120,7 +120,7 @@
 
 
                 // fetch all po data from database
-                // fetchAllPoData();
+                fetchAllNewStockData();
 
                 // Add a submit event listener to the form
                 form.submit(function(event) {
@@ -153,7 +153,7 @@
                                 // You can update the UI or perform other actions here
 
                                 //fetch product data from database function
-                                // fetchAllPoData();
+                                fetchAllNewStockData();
                             } else if (response.status === 422) {
                                 // Handle validation errors
                                 var errors = response.errors;
@@ -187,15 +187,15 @@
                     $('.input-error').hide();
                 });
 
-                function fetchAllPoData() {
+                function fetchAllNewStockData() {
                     $.ajax({
-                        url: '/fetchAllPoData',
+                        url: '/fetchAllNewStockData',
                         method: 'get',
                         success: function(response) {
                             // console.log(response);
                             $('#show_all_item_data').html(response);
                             // //Make table a data table
-                            $('#all_po_data').DataTable({
+                            $('#all_new_stock_data').DataTable({
                                 // Enable horizontal scrolling
                                 // "scrollX": true,
                                 order: [
