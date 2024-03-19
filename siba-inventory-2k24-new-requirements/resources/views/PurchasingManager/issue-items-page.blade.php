@@ -9,7 +9,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Purchasing Orders
+                        Issuence Table
                     </div>
                     <div class="card-body">
                         <div id="show_all_issue_data"></div>

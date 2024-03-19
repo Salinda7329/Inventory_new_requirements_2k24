@@ -26,7 +26,7 @@
         <div class="authentication-inner">
             <div class="card">
                 <div class="card-header">
-                    Items
+                    Store Items List
                     <!-- Button to trigger the Excel export -->
                     <button type="button" class="btn btn-success float-end" id="exportExcel">Export to Excel</button>
                 </div>
