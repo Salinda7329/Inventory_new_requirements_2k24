@@ -91,7 +91,7 @@ class InputsController extends Controller
                         <tr>
                         <th>Transaction No</th>
                         <th>PO No</th>
-                        <th>Item Id</th>
+                        <th>Item</th>
                         <th>Input Count</th>
                         <th>Input By</th>
                         <th>Input TimeStamp</th>

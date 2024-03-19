@@ -42,26 +42,32 @@
                 <div data-i18n="Without menu">Items With Users</div>
             </a>
         </li> --}}
+        <li class="menu-item" id="1">
+            <a href="/pm/addNewPONew" class="menu-link" >
+                <div data-i18n="Without menu">Manage Purchasing Orders</div>
+            </a>
+        </li>
 
-        <li class="menu-item">
+        <li class="menu-item" id="2">
+            <a href="/pm/addNewCategory" class="menu-link" >
+                <div data-i18n="Without menu">Manage Categories</div>
+            </a>
+        </li>
+
+        <li class="menu-item" id="3">
             <a href="/pm/addNewItemNew" class="menu-link">
-                <div data-i18n="Without menu">Items</div>
+                <div data-i18n="Without menu">Manage Items</div>
             </a>
         </li>
 
-        <li class="menu-item">
-            <a href="/pm/addNewPONew" class="menu-link">
-                <div data-i18n="Without menu">Purchasing Orders</div>
-            </a>
-        </li>
 
-        <li class="menu-item">
+        <li class="menu-item" id="4">
             <a href="/pm/addNewStock" class="menu-link">
                 <div data-i18n="Without menu">Input Stock</div>
             </a>
         </li>
 
-        <li class="menu-item">
+        <li class="menu-item" id="5">
             <a href="/pm/issueItems" class="menu-link">
                 <div data-i18n="Without menu">Issue Items</div>
             </a>
@@ -115,7 +121,7 @@
             </ul>
         </li> --}}
 
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Categories</div>
@@ -128,7 +134,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
 
         {{-- <li class="menu-header small text-uppercase">

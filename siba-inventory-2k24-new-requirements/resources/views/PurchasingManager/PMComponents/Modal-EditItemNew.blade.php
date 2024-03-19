@@ -38,6 +38,13 @@
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label" for="lower_limit">Lower Limit</label>
+                        <input type="text" class="form-control" id="lower_limit2" name="lower_limit"
+                            placeholder="Enter Lower Limit" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
                     @if (Auth::user()->role == 3)
                         <div class="mb-3">
                             <label for="status" class="form-label">Select Status</label>
@@ -66,12 +73,31 @@
                 <script>
                     $(document).ready(function() {
 
+                        // // Select the form using its id
+                        var form = $('#UpdateItemDetailsForm');
+
                         // Add an event listener to the modal close button
                         $('.btn-close').on('click', function() {
                             // Reset the form when the close button is clicked
                             $('#UpdateItemDetailsForm')[0].reset();
                             $('#password-error').hide();
                             $('.input-error').hide();
+                        });
+
+                        // Attach the input event handler to the form inputs
+                        form.find('input, select').on('input', function() {
+                            $(this).next('.input-error').hide();
+                        });
+                        // Attach the keypress event handler to the form inputs
+                        form.find('input').keypress(function(e) {
+                            // If the pressed key is Enter (key code 13)
+                            if (e.which === 13) {
+                                // Prevent the default form submission behavior
+                                e.preventDefault();
+
+                                // Trigger the form submission
+                                form.submit();
+                            }
                         });
 
                         // fetch item data from database
@@ -97,6 +123,7 @@
                                     $('#item_Id_hidden2').val(response.id);
                                     $('#item_name2').val(response.item_name);
                                     $('#category_id2').val(response.category_id);
+                                    $('#lower_limit2').val(response.lower_limit);
                                     $('#status2').val(response.isActive);
 
                                 }
@@ -132,7 +159,7 @@
                         //Update form
                         $('#UpdateItemDetailsForm').submit(function(e) {
                             e.preventDefault();
-                            //save form data to fd constant
+                            // Save form data to fd constant
                             const fd = new FormData(this);
 
                             $.ajax({
@@ -144,20 +171,56 @@
                                 processData: false,
                                 dataType: 'json',
                                 success: function(response) {
-                                    // console.log(response);
+                                    // Clear existing error messages
+                                    $('.text-danger').text('');
+
                                     if (response.status == 200) {
                                         alert('Item updated successfully!');
                                         $('#UpdateItemDetailsForm')[0].reset();
                                         $('#modaledititem').modal('hide');
-                                        // fetch product data from database
+                                        // Fetch product data from database
                                         fetchAllItemData();
+                                    } else if (response.status === 422) {
+                                        // Handle validation errors
+                                        var errors = response.errors;
 
+                                        for (var key in errors) {
+                                            // Find the form field
+                                            var field = $('[name="' + key + '"]');
+                                            // Display the error message
+                                            field.next('.input-error').text(errors[key][0]).show();
+                                        }
+                                    } else {
+                                        // Handle other status codes if needed
+                                        // For example, display an error message
+                                        alert('Failed to Update item. Please try again.');
+                                        // reset form
+                                        $('#createItemsForm')[0].reset();
+                                    }
+                                },
+                                error: function(xhr, status, error) {
+                                    // Handle validation errors
+                                    var response = xhr.responseJSON;
+                                    if (response && response.errors) {
+                                        var errors = response.errors;
+
+                                        for (var key in errors) {
+                                            // Find the form field
+                                            var field = $('[name="' + key + '"]');
+                                            // Display the error message
+                                            field.next('.input-error').text(errors[key][0]).show();
+                                        }
+                                    } else {
+                                        // Handle other errors if needed
+                                        console.error(xhr.responseText);
+                                        alert(
+                                            'An error occurred while processing your request. Please try again.'
+                                        );
                                     }
                                 }
                             });
-
-
                         });
+
 
 
                         // fetch categories

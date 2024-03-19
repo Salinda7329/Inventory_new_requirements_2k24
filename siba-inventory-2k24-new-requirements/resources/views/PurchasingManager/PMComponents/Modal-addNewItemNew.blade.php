@@ -29,7 +29,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="product_name">Category</label>
-                        <select class="form-select" id="category_id1" name="category_id" aria-label=category_name">
+                        <select class="form-select" id="category_id1" name="category_id" aria-label="category_name">
                             <option disabled selected hidden>Select an option</option>
                             <option value="1">Electronic</option>
                             <option value="2">Stationary</option>
@@ -135,10 +135,23 @@
                             }
                         },
                         error: function(xhr, status, error) {
-                            // Handle error if the request fails
-                            console.error(xhr.responseText);
-                            alert(
-                                'An error occurred while processing your request. Please try again.');
+                            // Handle validation errors
+                            var response = xhr.responseJSON;
+                            if (response && response.errors) {
+                                var errors = response.errors;
+
+                                for (var key in errors) {
+                                    // Find the form field
+                                    var field = $('[name="' + key + '"]');
+                                    // Display the error message
+                                    field.next('.input-error').text(errors[key][0]).show();
+                                }
+                            } else {
+                                // Handle other errors if needed
+                                console.error(xhr.responseText);
+                                alert(
+                                    'An error occurred while processing your request. Please try again.');
+                            }
                         }
                     });
                 });

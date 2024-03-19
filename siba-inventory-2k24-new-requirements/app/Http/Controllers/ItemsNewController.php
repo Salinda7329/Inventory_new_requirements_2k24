@@ -17,12 +17,13 @@ class ItemsNewController extends Controller
                 'item_name' => ['required', 'string', 'max:255', 'unique:items_news'],
                 'category_id' => ['required'],
                 'user_id_hidden' => ['required'],
-                'lower_limit' => ['max:255', 'min:0'],
+                'lower_limit' => ['required', 'numeric', 'min:0'],
             ]);
             // Create the new item using the Item model
             ItemsNew::create([
                 'item_name' => $input['item_name'],
                 'category_id' => $input['category_id'],
+                'lower_limit' => $input['lower_limit'],
                 'created_by' => $input['user_id_hidden'],
             ]);
 
@@ -56,6 +57,7 @@ class ItemsNewController extends Controller
                         <th>Item Name</th>
                         <th>Category</th>
                         <th>Items remaining</th>
+                        <th>Limit</th>
                         <th>Created By</th>
                         <th>Created At</th>
                         <th>Updated At</th>
@@ -71,6 +73,7 @@ class ItemsNewController extends Controller
                                         <td>" . $item->item_name . "</td>
                                         <td>" . $item->categoryData->category_name . "</td>
                                         <td>" . $item->items_remaining . "</td>
+                                        <td>" . $item->lower_limit . "</td>
                                         <td>" . $item->createdByUser->name . "</td>
                                         <td>" . $item->created_at . "</td>
                                         <td>" . $item->updated_at . "</td>
@@ -109,12 +112,14 @@ class ItemsNewController extends Controller
                 'item_name' => ['required', 'string', 'max:255'],
                 'category_id' => ['required'],
                 'user_id_hidden2' => ['required'],
+                'lower_limit' => ['required', 'numeric', 'min:0'],
             ]);
             $ItemsNew = ItemsNew::find($request->item_Id_hidden);
             // Create the new item using the Item model
             $ItemsNew->update([
                 'item_name' => $input['item_name'],
                 'category_id' => $input['category_id'],
+                'lower_limit' => $input['lower_limit'],
                 'created_by' => $input['user_id_hidden2'],
             ]);
 
