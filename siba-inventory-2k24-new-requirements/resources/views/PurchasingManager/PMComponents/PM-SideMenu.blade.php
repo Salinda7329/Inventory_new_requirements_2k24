@@ -29,19 +29,19 @@
         </li>
 
 
-        <li class="menu-item">
+        {{-- <li class="menu-item">
 
             <a href="/pm/product-limits" class="menu-link">
                 <div data-i18n="Without menu">Check Product Limits</div>
             </a>
-        </li>
+        </li> --}}
 
 
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="/pm/items-with-users" class="menu-link">
                 <div data-i18n="Without menu">Items With Users</div>
             </a>
-        </li>
+        </li> --}}
 
         <li class="menu-item">
             <a href="/pm/addNewItemNew" class="menu-link">
@@ -84,7 +84,7 @@
             </ul>
         </li> --}}
 
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Products</div>
@@ -98,9 +98,9 @@
                 </li>
             </ul>
 
-        </li>
+        </li> --}}
 
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-layout"></i>
                 <div data-i18n="Layouts">Brands</div>
@@ -113,7 +113,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -131,7 +131,7 @@
         </li>
 
 
-        <li class="menu-header small text-uppercase">
+        {{-- <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Requests</span>
         </li>
         <!-- Forms -->
@@ -144,10 +144,10 @@
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">View All Returns</div>
             </a>
-        </li>
+        </li> --}}
 
 
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Processing</span></li>
+        {{-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Processing</span></li>
         <!-- Forms -->
         <li class="menu-item">
             <a href="/pm/view-processing-requests" class="menu-link">
@@ -158,14 +158,14 @@
                 <i class="menu-icon tf-icons bx bx-box"></i>
                 <div data-i18n="User interface">View Processing Returns</div>
             </a>
-        </li>
+        </li> --}}
 
 
 
 
         <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
         <!-- Forms -->
-        <li class="menu-item">
+        {{-- <li class="menu-item">
             <a href="/pm/view-issued-items-history" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Issued Items History</div>
@@ -182,7 +182,7 @@
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Rejected Returns History</div>
             </a>
-        </li>
+        </li> --}}
 
     </ul>
 </aside>
