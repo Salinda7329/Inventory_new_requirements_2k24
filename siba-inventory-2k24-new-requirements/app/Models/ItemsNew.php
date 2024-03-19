@@ -13,6 +13,7 @@ class ItemsNew extends Model
         'item_name',
         'category_id',
         'items_remaining',
+        'lower_limit',
         'created_by',
         'isActive'
     ];
@@ -27,5 +28,15 @@ class ItemsNew extends Model
         ];
 
         return $status[$this->attributes['isActive']] ?? 'Unknown Status';
+    }
+
+    public function categoryData()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function createdByUser()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }

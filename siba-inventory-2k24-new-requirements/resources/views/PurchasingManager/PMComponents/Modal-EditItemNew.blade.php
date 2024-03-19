@@ -118,7 +118,10 @@
                                     $('#all_item_data').DataTable({
                                         // Enable horizontal scrolling
                                         // "scrollX": true,
-                                        order: [[0, 'desc']]
+                                        order: [
+                                            [0, 'desc']
+                                        ],
+                                        pageLength: 100,
                                     });
                                 }
 

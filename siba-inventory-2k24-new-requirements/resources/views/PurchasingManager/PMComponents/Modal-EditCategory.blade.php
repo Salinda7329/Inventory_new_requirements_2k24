@@ -90,7 +90,8 @@
                                     $('#show_all_category_data').html(response);
                                     // //Make table a data table
                                     $('#all_category_data').DataTable({
-
+                                        pageLength: 100,
+                                        // order: [[0, 'desc']]
                                         // Enable horizontal scrolling
                                     });
                                 }

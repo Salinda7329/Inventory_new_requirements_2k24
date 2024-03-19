@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('item_name')->nullable();
             $table->foreignId('category_id')->nullable()->constrained('categories');
-            $table->string('items_remaining')->nullable();
+            $table->string('items_remaining')->default(0);
+            $table->string('lower_limit')->default(0);
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->boolean('isActive')->default(1);
             // $table->foreignId('updated_by')->nullable()->constrained('users');

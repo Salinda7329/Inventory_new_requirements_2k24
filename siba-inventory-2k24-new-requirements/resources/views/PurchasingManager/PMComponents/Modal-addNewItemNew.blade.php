@@ -13,7 +13,7 @@
             </div>
             <div class="modal-body">
 
-                <form id="createItemsForm" class="mb-3" method="POST" action="#">
+                <form id="createItemsForm" class="mb-3" action="#">
                     @csrf
 
                     {{-- hidden field to store user_id --}}
@@ -35,6 +35,13 @@
                             <option value="2">Stationary</option>
                             <option value="3">Cleaning</option>
                         </select>
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="lower_limit">Lower Limit</label>
+                        <input type="text" class="form-control" id="lower_limit" name="lower_limit"
+                            placeholder="Enter Lower Limit" />
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
@@ -119,9 +126,6 @@
                                     // Display the error message
                                     field.next('.input-error').text(errors[key][0]).show();
                                 }
-
-                                $('#password-error').text(errors[key][0]).show();
-
                             } else {
                                 // Handle other status codes if needed
                                 // For example, display an error message
@@ -130,10 +134,15 @@
                                 $('#createItemsForm')[0].reset();
                             }
                         },
-
-
+                        error: function(xhr, status, error) {
+                            // Handle error if the request fails
+                            console.error(xhr.responseText);
+                            alert(
+                                'An error occurred while processing your request. Please try again.');
+                        }
                     });
                 });
+
 
                 // Add an event listener to the modal close button
                 $('#btnClose, .btn-close').on('click', function() {
@@ -151,39 +160,14 @@
                             $('#show_all_item_data').html(response);
                             // //Make table a data table
                             $('#all_item_data').DataTable({
-                                // Enable horizontal scrolling
-                                // "scrollX": true,
                                 order: [
                                     [0, 'desc']
-                                ]
+                                ],
+                                pageLength: 100,
                             });
                         }
 
 
-                    });
-                }
-
-                // fetch products
-                $.ajax({
-                    url: '{{ route('products.fetch') }}',
-                    method: 'get',
-                    success: function(products) {
-                        updateProductDropdown(products);
-                    }
-                });
-
-                // Function to update the product dropdown
-                function updateProductDropdown(products) {
-                    var productDropdown = $('#product_id1');
-                    productDropdown.empty(); // Clear existing options
-
-                    // Add default option
-                    productDropdown.append('<option disabled selected hidden>Select a Product</option>');
-
-                    // Populate the dropdown with products
-                    $.each(products, function(index, product) {
-                        productDropdown.append('<option value="' + product.id + '">' + product
-                            .product_name + '</option>');
                     });
                 }
 

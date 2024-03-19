@@ -14,9 +14,10 @@ class ItemsNewController extends Controller
     {
         try {
             $input = $request->validate([
-                'item_name' => ['required', 'string', 'max:255', 'unique:items'],
+                'item_name' => ['required', 'string', 'max:255', 'unique:items_news'],
                 'category_id' => ['required'],
                 'user_id_hidden' => ['required'],
+                'lower_limit' => ['max:255', 'min:0'],
             ]);
             // Create the new item using the Item model
             ItemsNew::create([
@@ -53,11 +54,11 @@ class ItemsNewController extends Controller
                         <tr>
                         <th>Item ID</th>
                         <th>Item Name</th>
-                        <th>Category_Id</th>
+                        <th>Category</th>
                         <th>Items remaining</th>
                         <th>Created By</th>
-                        <th>Input TimeStamp</th>
-                        <th>Updated TimeStamp</th>
+                        <th>Created At</th>
+                        <th>Updated At</th>
                         <th>Status</th>
                         <th>Action</th>
                         </tr>
@@ -68,9 +69,9 @@ class ItemsNewController extends Controller
                 $response .= "<tr>
                                         <td>" . $item->id . "</td>
                                         <td>" . $item->item_name . "</td>
-                                        <td>" . $item->category_id . "</td>
+                                        <td>" . $item->categoryData->category_name . "</td>
                                         <td>" . $item->items_remaining . "</td>
-                                        <td>" . $item->created_by . "</td>
+                                        <td>" . $item->createdByUser->name . "</td>
                                         <td>" . $item->created_at . "</td>
                                         <td>" . $item->updated_at . "</td>
                                         <td>" . $item->getIsActiveItemAttribute() . "</td>
@@ -102,17 +103,31 @@ class ItemsNewController extends Controller
 
     public function update(Request $request)
     {
-        $item = ItemsNew::find($request->item_Id_hidden);
 
-        $item->update([
-            'item_name' => $request->item_name,
-            'category_id' => $request->category_id,
-            'isActive' => $request->isActive,
-        ]);
+        try {
+            $input = $request->validate([
+                'item_name' => ['required', 'string', 'max:255'],
+                'category_id' => ['required'],
+                'user_id_hidden2' => ['required'],
+            ]);
+            $ItemsNew = ItemsNew::find($request->item_Id_hidden);
+            // Create the new item using the Item model
+            $ItemsNew->update([
+                'item_name' => $input['item_name'],
+                'category_id' => $input['category_id'],
+                'created_by' => $input['user_id_hidden2'],
+            ]);
 
-        return response()->json([
-            'status' => 200,
-        ]);
+            // Return the success response after the user is created
+            return response()->json(['message' => 'Item Updated successfully.', 'status' => 200]);
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return response()->json(['errors' => $e->errors(), 'status' => 422]);
+        } catch (QueryException $e) {
+            // Log the error if needed: \Log::error($e);
+
+            return response()->json(['error' => 'Failed to Update Item.', 'status' => 500]);
+        }
     }
 
     public function fetchItemName()
