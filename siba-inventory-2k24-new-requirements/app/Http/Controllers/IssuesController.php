@@ -48,6 +48,11 @@ class IssuesController extends Controller
                 'issued_by' => $input['user_id_hidden'],
             ]);
 
+            // Update the items_remaining column in the items_new table
+            $item = ItemsNew::find($input['item_id']);
+            $item->items_remaining -= $input['count'];
+            $item->save();
+
             // Return the success response after the issue is created
             return response()->json(['message' => 'Issued Successfully.', 'status' => 200]);
         } catch (ValidationException $e) {
