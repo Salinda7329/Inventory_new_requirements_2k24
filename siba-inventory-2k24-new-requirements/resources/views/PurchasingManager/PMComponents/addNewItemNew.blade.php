@@ -63,7 +63,7 @@
             var blob = new Blob([s2ab(binaryString)], { type: 'application/octet-stream' });
 
             // Save the Blob as an Excel file
-            saveAs(blob, 'items.xlsx');
+            saveAs(blob, 'items_list.xlsx');
         });
     });
 
