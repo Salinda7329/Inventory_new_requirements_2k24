@@ -42,32 +42,32 @@
                 <div data-i18n="Without menu">Items With Users</div>
             </a>
         </li> --}}
-        <li class="menu-item" id="1">
+        <li class="menu-item" >
             <a href="/pm/addNewPONew" class="menu-link" >
                 <div data-i18n="Without menu">Manage Purchasing Orders</div>
             </a>
         </li>
 
-        <li class="menu-item" id="2">
+        <li class="menu-item" >
             <a href="/pm/addNewCategory" class="menu-link" >
                 <div data-i18n="Without menu">Manage Categories</div>
             </a>
         </li>
 
-        <li class="menu-item" id="3">
+        <li class="menu-item" >
             <a href="/pm/addNewItemNew" class="menu-link">
                 <div data-i18n="Without menu">Manage Items</div>
             </a>
         </li>
 
 
-        <li class="menu-item" id="4">
+        <li class="menu-item" >
             <a href="/pm/addNewStock" class="menu-link">
                 <div data-i18n="Without menu">Input Stock</div>
             </a>
         </li>
 
-        <li class="menu-item" id="5">
+        <li class="menu-item" >
             <a href="/pm/issueItems" class="menu-link">
                 <div data-i18n="Without menu">Issue Items</div>
             </a>

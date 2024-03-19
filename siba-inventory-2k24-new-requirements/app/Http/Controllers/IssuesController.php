@@ -28,33 +28,76 @@ class IssuesController extends Controller
         return response()->json($departments);
     }
 
+    // public function create(Request $request)
+    // {
+    //     try {
+    //         $input = $request->validate([
+    //             'user_id_hidden' => ['required'],
+    //             'item_id' => ['required'],
+    //             'count' => ['required', 'string', 'max:255', 'min:0'],
+    //             'issued_to' => ['required'],
+    //             'issue_remark' => ['required'],
+    //         ]);
+
+    //         // Create the Issue record
+    //         $issue = Issue::create([
+    //             'item_id' => $input['item_id'],
+    //             'count' => $input['count'],
+    //             'issued_to' => $input['issued_to'],
+    //             'issue_remark' => $input['issue_remark'],
+    //             'issued_by' => $input['user_id_hidden'],
+    //         ]);
+
+    //         // Update the items_remaining column in the items_new table
+    //         $item = ItemsNew::find($input['item_id']);
+    //         $item->items_remaining -= $input['count'];
+    //         $item->save();
+
+    //         // Return the success response after the issue is created
+    //         return response()->json(['message' => 'Issued Successfully.', 'status' => 200]);
+    //     } catch (ValidationException $e) {
+    //         // Handle validation errors
+    //         return response()->json(['errors' => $e->errors(), 'status' => 422]);
+    //     } catch (QueryException $e) {
+    //         // Log the error if needed: \Log::error($e);
+    //         return response()->json(['error' => 'Failed to Issue.', 'status' => 500]);
+    //     }
+    // }
     public function create(Request $request)
     {
         try {
             $input = $request->validate([
                 'user_id_hidden' => ['required'],
                 'item_id' => ['required'],
-                'count' => ['required', 'string', 'max:255', 'min:0'],
+                'count' => ['required', 'string', 'max:255','numeric','min:1'],
                 'issued_to' => ['required'],
                 'issue_remark' => ['required'],
             ]);
 
-            // Create the Issue record
-            $issue = Issue::create([
-                'item_id' => $input['item_id'],
-                'count' => $input['count'],
-                'issued_to' => $input['issued_to'],
-                'issue_remark' => $input['issue_remark'],
-                'issued_by' => $input['user_id_hidden'],
-            ]);
-
-            // Update the items_remaining column in the items_new table
+            // Find the item
             $item = ItemsNew::find($input['item_id']);
-            $item->items_remaining -= $input['count'];
-            $item->save();
 
-            // Return the success response after the issue is created
-            return response()->json(['message' => 'Issued Successfully.', 'status' => 200]);
+            // Check if there are sufficient items remaining
+            if ($item->items_remaining >= $input['count']) {
+                // Create the Issue record
+                $issue = Issue::create([
+                    'item_id' => $input['item_id'],
+                    'count' => $input['count'],
+                    'issued_to' => $input['issued_to'],
+                    'issue_remark' => $input['issue_remark'],
+                    'issued_by' => $input['user_id_hidden'],
+                ]);
+
+                // Update the items_remaining column in the items_new table
+                $item->items_remaining -= $input['count'];
+                $item->save();
+
+                // Return the success response after the issue is created
+                return response()->json(['message' => 'Issued Successfully.', 'status' => 200]);
+            } else {
+                // Return a validation error if there are not enough items remaining
+                return response()->json(['errors' => ['count' => ['No sufficient items']], 'status' => 422]);
+            }
         } catch (ValidationException $e) {
             // Handle validation errors
             return response()->json(['errors' => $e->errors(), 'status' => 422]);
@@ -63,6 +106,7 @@ class IssuesController extends Controller
             return response()->json(['error' => 'Failed to Issue.', 'status' => 500]);
         }
     }
+
 
     public function fetchAllIssueData()
     {
