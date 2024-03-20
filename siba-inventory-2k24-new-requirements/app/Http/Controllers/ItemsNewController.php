@@ -7,6 +7,7 @@ use Doctrine\DBAL\Query\QueryException;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ItemsNewController extends Controller
 {
@@ -72,25 +73,25 @@ class ItemsNewController extends Controller
                     </thead>
                     <tbody>";
 
-            foreach ($items as $item) {
-
-                $value = $item->item_price * $item->items_remaining;
-                $response .= "<tr>
-                                        <td>" . $item->id . "</td>
-                                        <td>" . $item->item_ref . "</td>
-                                        <td>" . $item->categoryData->category_name . "</td>
-                                        <td>" . $item->item_name . "</td>
-                                        <td>" . $item->items_remaining . "</td>
-                                        <td>" . $item->item_price . "</td>
-                                        <td>" . $value . "</td>
-                                        <td>" . $item->createdByUser->name . "</td>
-                                        <td>" . $item->created_at . "</td>
-                                        <td>" . $item->getIsActiveItemAttribute() . "</td>
-                                        <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
-                                        data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
-                                        </td>
-                                    </tr>";
-            }
+                    foreach ($items as $item) {
+                        $value = $item->item_price * $item->items_remaining;
+                        $trStyle = ($item->items_remaining <= $item->lower_limit) ? 'color: red;' : '';
+                        $response .= "<tr style='{$trStyle}'>
+                                            <td>" . $item->id . "</td>
+                                            <td>" . $item->item_ref . "</td>
+                                            <td>" . $item->categoryData->category_name . "</td>
+                                            <td>" . $item->item_name . "</td>
+                                            <td>" . $item->items_remaining . "</td>
+                                            <td>" . $item->item_price . "</td>
+                                            <td>" . $value . "</td>
+                                            <td>" . $item->createdByUser->name . "</td>
+                                            <td>" . $item->created_at . "</td>
+                                            <td>" . $item->getIsActiveItemAttribute() . "</td>
+                                            <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
+                                            data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
+                                            </td>
+                                        </tr>";
+                    }
 
 
 
@@ -117,7 +118,14 @@ class ItemsNewController extends Controller
 
         try {
             $input = $request->validate([
-                'item_ref' => ['required', 'string', 'max:255', 'unique:items_news'],
+                'item_ref' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    Rule::unique('items_news')->ignore($request->item_Id_hidden)->when($request->item_ref !== $request->old_item_ref, function ($query) use ($request) {
+                        return $query->where('item_ref', $request->item_ref);
+                    }),
+                ],
                 'item_name' => ['required', 'string', 'max:255'],
                 'category_id' => ['required'],
                 'user_id_hidden2' => ['required'],

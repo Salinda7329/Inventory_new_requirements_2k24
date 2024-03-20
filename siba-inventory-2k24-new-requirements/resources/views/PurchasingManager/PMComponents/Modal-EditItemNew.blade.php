@@ -17,8 +17,12 @@
 
                     {{-- hidden id input field --}}
                     <input type="hidden" id="item_Id_hidden2" name="item_Id_hidden">
+
                     {{-- hidden current user id input field --}}
                     <input type="hidden" id="user_id_hidden2" name="user_id_hidden2" value="{{ Auth::user()->id }}">
+                    
+                     {{-- hidden input filed to store old item_ref --}}
+                     <input type="hidden" name="old_item_ref" id="old_item_ref">
 
                     <div class="mb-3">
                         <label class="form-label" for="brand_name">Category</label>
@@ -136,6 +140,7 @@
                                     console.log(response.po_no);
                                     // Set id value to the hidden field
                                     $('#item_Id_hidden2').val(response.id);
+                                    $('#old_item_ref').val(response.item_ref);
                                     $('#item_ref2').val(response.item_ref);
                                     $('#item_name2').val(response.item_name);
                                     $('#category_id2').val(response.category_id);
