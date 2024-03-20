@@ -21,6 +21,24 @@
                         hidden>
 
                     <div class="mb-3">
+                        <label class="form-label" for="product_name">Category</label>
+                        <select class="form-select" id="category_id1" name="category_id" aria-label="category_name">
+                            <option disabled selected hidden>Select an option</option>
+                            <option value="1">Electronic</option>
+                            <option value="2">Stationary</option>
+                            <option value="3">Cleaning</option>
+                        </select>
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="item-name">Reference ID</label>
+                        <input type="text" class="form-control" id="item_ref" name="item_ref"
+                            placeholder="Enter Item Reference ex:st/41" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label" for="item-name">Item Name</label>
                         <input type="text" class="form-control" id="item_name" name="item_name"
                             placeholder="Enter Item Name" />
@@ -34,16 +52,6 @@
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="product_name">Category</label>
-                        <select class="form-select" id="category_id1" name="category_id" aria-label="category_name">
-                            <option disabled selected hidden>Select an option</option>
-                            <option value="1">Electronic</option>
-                            <option value="2">Stationary</option>
-                            <option value="3">Cleaning</option>
-                        </select>
-                        <div class="input-error text-danger" style="display: none"></div>
-                    </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="lower_limit">Lower Limit</label>
@@ -157,7 +165,8 @@
                                 // Handle other errors if needed
                                 console.error(xhr.responseText);
                                 alert(
-                                    'An error occurred while processing your request. Please try again.');
+                                    'An error occurred while processing your request. Please try again.'
+                                );
                             }
                         }
                     });

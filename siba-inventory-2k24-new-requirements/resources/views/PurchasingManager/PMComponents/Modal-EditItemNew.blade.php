@@ -21,6 +21,24 @@
                     <input type="hidden" id="user_id_hidden2" name="user_id_hidden2" value="{{ Auth::user()->id }}">
 
                     <div class="mb-3">
+                        <label class="form-label" for="brand_name">Category</label>
+                        <select class="form-select" id="category_id2" name="category_id" aria-label="brand_name">
+                            <option disabled selected hidden>Select an option</option>
+                            <option value="1">Electronic</option>
+                            <option value="2">Stationary</option>
+                            <option value="3">Cleaning</option>
+                        </select>
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="item-name">Reference ID</label>
+                        <input type="text" class="form-control" id="item_ref2" name="item_ref"
+                            placeholder="Enter Item Reference ex:st/41" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label" for="catagory">Item Name</label>
                         <input type="text" class="form-control" id="item_name2" name="item_name"
                             placeholder="Enter Item Name" />
@@ -34,16 +52,6 @@
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="brand_name">Category</label>
-                        <select class="form-select" id="category_id2" name="category_id" aria-label="brand_name">
-                            <option disabled selected hidden>Select an option</option>
-                            <option value="1">Electronic</option>
-                            <option value="2">Stationary</option>
-                            <option value="3">Cleaning</option>
-                        </select>
-                        <div class="input-error text-danger" style="display: none"></div>
-                    </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="lower_limit">Lower Limit</label>
@@ -128,6 +136,7 @@
                                     console.log(response.po_no);
                                     // Set id value to the hidden field
                                     $('#item_Id_hidden2').val(response.id);
+                                    $('#item_ref2').val(response.item_ref);
                                     $('#item_name2').val(response.item_name);
                                     $('#category_id2').val(response.category_id);
                                     $('#item_price2').val(response.item_price);

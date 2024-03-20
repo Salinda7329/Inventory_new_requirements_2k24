@@ -11,6 +11,7 @@ class ItemsNew extends Model
     use HasFactory;
     protected $fillable = [
         'item_name',
+        'item_ref',
         'category_id',
         'items_remaining',
         'lower_limit',

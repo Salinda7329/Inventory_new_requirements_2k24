@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('itemsnew', function (Blueprint $table) {
             $table->id();
+            $table->string('item_ref')->nullable()->default(null);
             $table->string('item_name')->nullable();
             $table->foreignId('category_id')->nullable()->constrained('categories');
             $table->string('items_remaining')->default(0);

@@ -15,6 +15,7 @@ class ItemsNewController extends Controller
         try {
             $input = $request->validate([
                 'item_name' => ['required', 'string', 'max:255', 'unique:items_news'],
+                'item_ref' => ['required', 'string', 'max:255', 'unique:items_news'],
                 'category_id' => ['required'],
                 'user_id_hidden' => ['required'],
                 'item_price' => ['numeric','min:0'],
@@ -23,6 +24,7 @@ class ItemsNewController extends Controller
             // Create the new item using the Item model
             ItemsNew::create([
                 'item_name' => $input['item_name'],
+                'item_ref' => $input['item_ref'],
                 'category_id' => $input['category_id'],
                 'lower_limit' => $input['lower_limit'],
                 'item_price' => $input['item_price'],
@@ -55,7 +57,8 @@ class ItemsNewController extends Controller
                 "<table id='all_item_data' class='display'>
                     <thead>
                         <tr>
-                        <th>Item ID</th>
+                        <th>Reference</th>
+                        <th>Category</th>
                         <th>Item Name</th>
                         <th>Balance</th>
                         <th>Item_Price</th>
@@ -72,7 +75,8 @@ class ItemsNewController extends Controller
 
                 $value=$item->item_price*$item->items_remaining;
                 $response .= "<tr>
-                                        <td>" . $item->id . "</td>
+                                        <td>" . $item->item_ref . "</td>
+                                        <td>" . $item->categoryData->category_name . "</td>
                                         <td>" . $item->item_name . "</td>
                                         <td>" . $item->items_remaining . "</td>
                                         <td>" . $item->item_price . "</td>
@@ -111,6 +115,7 @@ class ItemsNewController extends Controller
 
         try {
             $input = $request->validate([
+                'item_ref' => ['required', 'string', 'max:255', 'unique:items_news'],
                 'item_name' => ['required', 'string', 'max:255'],
                 'category_id' => ['required'],
                 'user_id_hidden2' => ['required'],
@@ -120,6 +125,7 @@ class ItemsNewController extends Controller
             $ItemsNew = ItemsNew::find($request->item_Id_hidden);
             // Create the new item using the Item model
             $ItemsNew->update([
+                'item_ref' => $input['item_ref'],
                 'item_name' => $input['item_name'],
                 'category_id' => $input['category_id'],
                 'item_price' => $input['item_price'],
