@@ -104,6 +104,8 @@ Route::middleware([
     Route::get('/fetchPoNumbers', [PoController::class, 'fetchPoNumbers']);
     //route to fetch item names
     Route::get('/fetchItemName', [ItemsNewController::class, 'fetchItemName']);
+    //route to fetch item names using user input search
+    Route::get('/fetchItemNameAuto', [ItemsNewController::class, 'fetchItemNameAuto']);
 
 
     //create new stock post route

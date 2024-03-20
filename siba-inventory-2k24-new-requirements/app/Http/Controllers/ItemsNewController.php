@@ -18,7 +18,7 @@ class ItemsNewController extends Controller
                 'item_ref' => ['required', 'string', 'max:255', 'unique:items_news'],
                 'category_id' => ['required'],
                 'user_id_hidden' => ['required'],
-                'item_price' => ['numeric','min:0'],
+                'item_price' => ['numeric', 'min:0'],
                 'lower_limit' => ['required', 'numeric', 'min:0'],
             ]);
             // Create the new item using the Item model
@@ -74,7 +74,7 @@ class ItemsNewController extends Controller
 
             foreach ($items as $item) {
 
-                $value=$item->item_price*$item->items_remaining;
+                $value = $item->item_price * $item->items_remaining;
                 $response .= "<tr>
                                         <td>" . $item->id . "</td>
                                         <td>" . $item->item_ref . "</td>
@@ -121,7 +121,7 @@ class ItemsNewController extends Controller
                 'item_name' => ['required', 'string', 'max:255'],
                 'category_id' => ['required'],
                 'user_id_hidden2' => ['required'],
-                'item_price' => ['numeric','min:0'],
+                'item_price' => ['numeric', 'min:0'],
                 'lower_limit' => ['required', 'numeric', 'min:0'],
             ]);
             $ItemsNew = ItemsNew::find($request->item_Id_hidden);
@@ -150,6 +150,16 @@ class ItemsNewController extends Controller
     public function fetchItemName()
     {
         $items = ItemsNew::select('id', 'item_name')->get(); // Select id and item_name from ItemsNew
+
+        return response()->json($items);
+    }
+
+    public function fetchItemNameAuto(Request $request)
+    {
+        $term = $request->input('term');
+
+        // Query the database to fetch item names and ids that match the user input
+        $items = ItemsNew::where('item_name', 'like', '%' . $term . '%')->get(['id', 'item_name']);
 
         return response()->json($items);
     }

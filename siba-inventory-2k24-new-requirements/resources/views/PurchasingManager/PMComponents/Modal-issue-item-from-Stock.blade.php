@@ -19,14 +19,17 @@
                     {{-- hidden field to store user_id --}}
                     <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
                         hidden>
+                    {{-- used to store the selected item's ID when the suggestion item is clicked. --}}
+                    <input type="hidden" id="selected_item_id" name="item_id">
+
 
 
                     <div class="mb-3">
-                        <label class="form-label" for="po_no">Item</label>
-                        <select class="form-select" id="item_id" name="item_id" aria-label="catagory">
-                            <option disabled selected hidden>Select Item Name</option>
-                        </select>
+                        <label class="form-label" for="item-name">Item Name</label>
+                        <input type="text" class="form-control" id="item_name" name="item_name_selection"
+                            placeholder="Enter Item Name" />
                         <div class="input-error text-danger" style="display: none"></div>
+                        <div id="item-suggestions" class="dropdown-menu" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
@@ -67,6 +70,53 @@
         <script>
             $(document).ready(function() {
 
+                // Initialize autocomplete for the item name input field
+                $("#item_name").on("input", function() {
+                    var inputValue = $(this).val();
+                    $.ajax({
+                        url: "/fetchItemNameAuto",
+                        method: "GET",
+                        dataType: "json",
+                        data: {
+                            term: inputValue
+                        },
+                        success: function(data) {
+                            var suggestionsDropdown = $("#item-suggestions");
+                            suggestionsDropdown.empty();
+                            if (data.length > 0) {
+                                $.each(data, function(index, item) {
+                                    suggestionsDropdown.append(
+                                        '<a class="dropdown-item" href="#" data-id="' +
+                                        item.id + '">' + item.item_name +
+                                        '</a>'
+                                    );
+                                });
+                                suggestionsDropdown.show();
+                            } else {
+                                suggestionsDropdown.hide();
+                            }
+                        }
+                    });
+                });
+
+                // Handle click on suggestion items
+                $(document).on("click", "#item-suggestions .dropdown-item", function() {
+                    var selectedItemName = $(this).text();
+                    var selectedItemId = $(this).data('id');
+                    $("#item_name").val(
+                    selectedItemName); // Populate the input field with the selected item name
+                    $("#selected_item_id").val(
+                    selectedItemId); // Store the selected item id in a hidden input field
+                    $("#item-suggestions").hide(); // Hide the suggestion dropdown
+                });
+
+                // Handle click outside the suggestion dropdown to hide it
+                $(document).click(function(event) {
+                    if (!$(event.target).closest("#item-suggestions").length &&
+                        !$(event.target).is("#item_name")) {
+                        $("#item-suggestions").hide();
+                    }
+                });
 
                 // // Select the form using its id
                 var form = $('#IssuesForm');
@@ -178,29 +228,29 @@
                 }
 
                 // fetch items data
-                $.ajax({
-                    url: '/fetchItemName',
-                    method: 'get',
-                    success: function(items) {
-                        updateItemDropdown(items);
-                    }
-                });
+                // $.ajax({
+                //     url: '/fetchItemName',
+                //     method: 'get',
+                //     success: function(items) {
+                //         updateItemDropdown(items);
+                //     }
+                // });
 
                 // Function to update the items dropdown
-                function updateItemDropdown(items) {
-                    var itemDropdown = $('#item_id');
-                    itemDropdown.empty(); // Clear existing options
+                // function updateItemDropdown(items) {
+                //     var itemDropdown = $('#item_id');
+                //     itemDropdown.empty(); // Clear existing options
 
-                    // Add default option
-                    itemDropdown.append('<option disabled selected hidden>Select an Item</option>');
+                //     // Add default option
+                //     itemDropdown.append('<option disabled selected hidden>Select an Item</option>');
 
-                    // Populate the dropdown with items
-                    $.each(items, function(index,
-                        item) { // Change 'items' variable to 'item' in the function parameters
-                        itemDropdown.append('<option value="' + item.id + '">' + item.item_name +
-                            '</option>'); // Change 'items' variable to 'item'
-                    });
-                }
+                //     // Populate the dropdown with items
+                //     $.each(items, function(index,
+                //         item) { // Change 'items' variable to 'item' in the function parameters
+                //         itemDropdown.append('<option value="' + item.id + '">' + item.item_name +
+                //             '</option>'); // Change 'items' variable to 'item'
+                //     });
+                // }
 
 
                 // fetch departments
