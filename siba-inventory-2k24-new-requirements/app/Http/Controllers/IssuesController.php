@@ -123,6 +123,7 @@ class IssuesController extends Controller
                     <thead>
                         <tr>
                         <th>Issue No</th>
+                        <th>Item Reference</th>
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>To Department</th>
@@ -138,6 +139,7 @@ class IssuesController extends Controller
                 $response .=
                     "<tr>
                         <td>" . $issue->id . "</td>
+                        <td>" . $issue->itemName->item_ref . "</td>
                         <td>" . $issue->itemName->item_name . "</td>
                         <td>" . $issue->count . "</td>
                         <td>" . $issue->toDepartment->dept_name . "</td>

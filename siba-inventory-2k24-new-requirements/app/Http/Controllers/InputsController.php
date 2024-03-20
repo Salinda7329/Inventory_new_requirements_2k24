@@ -91,6 +91,7 @@ class InputsController extends Controller
                         <tr>
                         <th>Transaction No</th>
                         <th>PO No</th>
+                        <th>Item Reference</th>
                         <th>Item</th>
                         <th>Input Count</th>
                         <th>Input By</th>
@@ -106,6 +107,7 @@ class InputsController extends Controller
                 $response .= "<tr>
                                         <td>" . $item->id . "</td>
                                         <td>" . $item->po_id . "</td>
+                                        <td>" . $item->getmainItemRef->item_ref . "</td>
                                         <td>" . $item->getmainItemData->item_name . "</td>
                                         <td>" . $item->count . "</td>
                                         <td>" . $item->createdByUser->name . "</td>

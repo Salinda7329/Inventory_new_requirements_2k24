@@ -40,4 +40,8 @@ class Input extends Model
     {
         return $this->belongsTo(ItemsNew::class, 'item_id', 'id');
     }
+    public function getmainItemRef()
+    {
+        return $this->belongsTo(ItemsNew::class, 'item_id', 'id');
+    }
 }

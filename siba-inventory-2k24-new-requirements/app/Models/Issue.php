@@ -22,7 +22,6 @@ class Issue extends Model
     {
         return $this->belongsTo(ItemsNew::class, 'item_id', 'id');
     }
-
     public function toDepartment()
     {
         return $this->belongsTo(Department::class, 'issued_to', 'id');
