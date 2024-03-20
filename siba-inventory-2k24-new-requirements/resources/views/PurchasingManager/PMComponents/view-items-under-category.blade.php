@@ -44,7 +44,7 @@
                                         <td>{{ $item->item_price }}</td>
                                         <td>{{ $value }}</td>
                                         <td style="{{ $limitStyle }}">{{ $item->lower_limit }}</td>
-                                        <td>{{ $item->created_by }}</td>
+                                        <td>{{ $item->createdByUser->name }}</td>
                                         <td>{{ $item->created_at }}</td>
                                     </tr>
                                 @endforeach

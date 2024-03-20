@@ -20,7 +20,7 @@
 
                     {{-- hidden current user id input field --}}
                     <input type="hidden" id="user_id_hidden2" name="user_id_hidden2" value="{{ Auth::user()->id }}">
-                    
+
                      {{-- hidden input filed to store old item_ref --}}
                      <input type="hidden" name="old_item_ref" id="old_item_ref">
 
@@ -71,7 +71,6 @@
                                 <option disabled selected hidden>Select a Status</option>
                                 <option value="1">Active</option>
                                 <option value="2">Deactive</option>
-                                <option value="3">Delete</option>
                             </select>
                         </div>
                     @else
@@ -81,7 +80,6 @@
                                 <option disabled selected hidden>Select a Status</option>
                                 <option value="1">Active</option>
                                 <option value="2">Deactive</option>
-                                <option value="3">Delete</option>
                             </select>
                         </div>
                     @endif

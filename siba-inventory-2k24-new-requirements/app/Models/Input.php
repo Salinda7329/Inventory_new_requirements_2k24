@@ -44,4 +44,8 @@ class Input extends Model
     {
         return $this->belongsTo(ItemsNew::class, 'item_id', 'id');
     }
+    public function getPoData()
+    {
+        return $this->belongsTo(Porder::class, 'po_id', 'id');
+    }
 }

@@ -131,6 +131,7 @@ class ItemsNewController extends Controller
                 'user_id_hidden2' => ['required'],
                 'item_price' => ['numeric', 'min:0'],
                 'lower_limit' => ['required', 'numeric', 'min:0'],
+                'isActive' => ['required'],
             ]);
             $ItemsNew = ItemsNew::find($request->item_Id_hidden);
             // Create the new item using the Item model
@@ -141,6 +142,7 @@ class ItemsNewController extends Controller
                 'item_price' => $input['item_price'],
                 'lower_limit' => $input['lower_limit'],
                 'created_by' => $input['user_id_hidden2'],
+                'isActive' => $input['isActive'],
             ]);
 
             // Return the success response after the user is created

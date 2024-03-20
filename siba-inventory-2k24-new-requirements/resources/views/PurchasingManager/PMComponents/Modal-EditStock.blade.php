@@ -1,7 +1,7 @@
 <!-- Button trigger modal -->
 
 <!-- Modal -->
-<div class="modal fade" id="modaleditpo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="modaleditInput" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

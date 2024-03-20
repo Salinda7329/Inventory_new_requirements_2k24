@@ -106,7 +106,7 @@ class InputsController extends Controller
             foreach ($items as $item) {
                 $response .= "<tr>
                                         <td>" . $item->id . "</td>
-                                        <td>" . $item->po_id . "</td>
+                                        <td>" . $item->getPoData->po_no . "</td>
                                         <td>" . $item->getmainItemRef->item_ref . "</td>
                                         <td>" . $item->getmainItemData->item_name . "</td>
                                         <td>" . $item->count . "</td>
@@ -115,7 +115,7 @@ class InputsController extends Controller
                                         <td>" . $item->updated_at . "</td>
                                         <td>" . $item->getIsActiveInputttribute() . "</td>
                                         <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
-                                        data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
+                                        data-bs-target='#modaleditInput' class='editItemButton'>Edit</a>
                                         </td>
                                     </tr>";
             }

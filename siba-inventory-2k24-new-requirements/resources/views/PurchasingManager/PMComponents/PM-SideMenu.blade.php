@@ -174,10 +174,6 @@
         <li class="menu-item">
             <a href="/pm/view-rejected-history" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Item Balances</div>
-            </a>
-            <a href="/pm/view-rejected-history" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Low Limit Items</div>
             </a>
             <a href="/pm/view-issued-items-history" class="menu-link">
