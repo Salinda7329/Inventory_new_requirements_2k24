@@ -57,6 +57,7 @@ class ItemsNewController extends Controller
                 "<table id='all_item_data' class='display'>
                     <thead>
                         <tr>
+                        <th>Id</th>
                         <th>Reference</th>
                         <th>Category</th>
                         <th>Item Name</th>
@@ -75,6 +76,7 @@ class ItemsNewController extends Controller
 
                 $value=$item->item_price*$item->items_remaining;
                 $response .= "<tr>
+                                        <td>" . $item->id . "</td>
                                         <td>" . $item->item_ref . "</td>
                                         <td>" . $item->categoryData->category_name . "</td>
                                         <td>" . $item->item_name . "</td>

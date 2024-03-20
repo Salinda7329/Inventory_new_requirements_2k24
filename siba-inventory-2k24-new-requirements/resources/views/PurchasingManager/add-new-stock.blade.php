@@ -35,6 +35,10 @@
         $(document).ready(function() {
             // Add click event listener to the export button
             $('#exportExcel').click(function() {
+                // Disable DataTables pagination temporarily
+                var dataTable = $('#all_new_stock_data').DataTable();
+                dataTable.page.len(-1).draw();
+
                 // Get the HTML content of the table inside show_all_item_data div
                 var htmlTable = document.getElementById('show_all_item_data').outerHTML;
 
@@ -54,6 +58,9 @@
 
                 // Save the Blob as an Excel file
                 saveAs(blob, 'stock_input.xlsx');
+
+                // Re-enable DataTables pagination after export
+                dataTable.page.len(10).draw(); // Change 10 to your desired page length
             });
         });
 

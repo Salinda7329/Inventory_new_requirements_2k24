@@ -50,6 +50,9 @@
     $(document).ready(function() {
         // Add click event listener to the export button
         $('#exportExcel').click(function() { // Corrected ID here
+            // Disable DataTables pagination temporarily
+            var dataTable = $('#all_item_data').DataTable();
+            dataTable.page.len(-1).draw();
             // Get the HTML content of the table inside show_all_item_data div
             var htmlTable = document.getElementById('show_all_item_data').outerHTML;
 
@@ -57,13 +60,21 @@
             var workbook = XLSX.utils.table_to_book(document.getElementById('show_all_item_data'));
 
             // Generate a binary string from the workbook
-            var binaryString = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+            var binaryString = XLSX.write(workbook, {
+                bookType: 'xlsx',
+                type: 'binary'
+            });
 
             // Convert the binary string to a Blob
-            var blob = new Blob([s2ab(binaryString)], { type: 'application/octet-stream' });
+            var blob = new Blob([s2ab(binaryString)], {
+                type: 'application/octet-stream'
+            });
 
             // Save the Blob as an Excel file
             saveAs(blob, 'items_list.xlsx');
+
+            // Re-enable DataTables pagination after export
+            dataTable.page.len(10).draw(); // Change 10 to your desired page length
         });
     });
 
@@ -75,4 +86,3 @@
         return buf;
     }
 </script>
-
