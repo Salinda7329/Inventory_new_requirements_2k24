@@ -1,6 +1,6 @@
 <!-- Button to trigger the modal -->
 <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalIssueStockitem">
-    Issue Item to Department
+    Issue Items to Department
 </button>
 
 <!-- Modal -->
