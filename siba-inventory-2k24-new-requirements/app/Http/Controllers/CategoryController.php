@@ -47,12 +47,13 @@ class CategoryController extends Controller
         $response = '';
 
         if ($categories->count() > 0) {
+            $rowNumber = 1; // Initialize row number
 
             $response .=
                 "<table id='all_category_data' class='display'>
                     <thead>
                         <tr>
-                        <th>Category ID</th>
+                        <th>#</th>
                         <th>Category Name</th>
                         <th>View</th>
                         <th>Created By</th>
@@ -66,9 +67,9 @@ class CategoryController extends Controller
             foreach ($categories as $category) {
                 $response .=
                     "<tr>
-                            <td>" . $category->id . "</td>
+                            <td>" . $rowNumber++ . "</td>
                             <td>" . $category->category_name . "</td>
-                            <td><a href='/pm/ViewItemsUnderCategory/". $category->id."'>View</a></td>
+                            <td><a href='/pm/ViewItemsUnderCategory/" . $category->id . "'>View</a></td>
                             <td>" . $category->createdByUser->name . "</td>
                             <td>" . $category->created_at . "</td>
                             <td>" . $category->getIsActiveCategoryAttribute() . "</td>
