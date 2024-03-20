@@ -28,6 +28,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label" for="item-name">Item Price</label>
+                        <input type="text" class="form-control" id="item_price2" name="item_price"
+                            placeholder="Enter Item Price" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label" for="brand_name">Category</label>
                         <select class="form-select" id="category_id2" name="category_id" aria-label="brand_name">
                             <option disabled selected hidden>Select an option</option>
@@ -123,6 +130,7 @@
                                     $('#item_Id_hidden2').val(response.id);
                                     $('#item_name2').val(response.item_name);
                                     $('#category_id2').val(response.category_id);
+                                    $('#item_price2').val(response.item_price);
                                     $('#lower_limit2').val(response.lower_limit);
                                     $('#status2').val(response.isActive);
 

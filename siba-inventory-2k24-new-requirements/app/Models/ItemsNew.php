@@ -14,6 +14,7 @@ class ItemsNew extends Model
         'category_id',
         'items_remaining',
         'lower_limit',
+        'item_price',
         'created_by',
         'isActive'
     ];

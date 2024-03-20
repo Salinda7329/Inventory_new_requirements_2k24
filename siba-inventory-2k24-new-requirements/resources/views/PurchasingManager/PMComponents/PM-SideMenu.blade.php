@@ -169,7 +169,7 @@
 
 
 
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li>
+        {{-- <li class="menu-header small text-uppercase"><span class="menu-header-text">History</span></li> --}}
         <!-- Forms -->
         {{-- <li class="menu-item">
             <a href="/pm/view-issued-items-history" class="menu-link">

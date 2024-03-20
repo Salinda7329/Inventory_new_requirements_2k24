@@ -17,6 +17,7 @@ class ItemsNewController extends Controller
                 'item_name' => ['required', 'string', 'max:255', 'unique:items_news'],
                 'category_id' => ['required'],
                 'user_id_hidden' => ['required'],
+                'item_price' => ['numeric','min:0'],
                 'lower_limit' => ['required', 'numeric', 'min:0'],
             ]);
             // Create the new item using the Item model
@@ -24,6 +25,7 @@ class ItemsNewController extends Controller
                 'item_name' => $input['item_name'],
                 'category_id' => $input['category_id'],
                 'lower_limit' => $input['lower_limit'],
+                'item_price' => $input['item_price'],
                 'created_by' => $input['user_id_hidden'],
             ]);
 
@@ -55,12 +57,11 @@ class ItemsNewController extends Controller
                         <tr>
                         <th>Item ID</th>
                         <th>Item Name</th>
-                        <th>Category</th>
-                        <th>Items remaining</th>
-                        <th>Limit</th>
+                        <th>Balance</th>
+                        <th>Item_Price</th>
+                        <th>Value</th>
                         <th>Created By</th>
                         <th>Created At</th>
-                        <th>Updated At</th>
                         <th>Status</th>
                         <th>Action</th>
                         </tr>
@@ -68,15 +69,16 @@ class ItemsNewController extends Controller
                     <tbody>";
 
             foreach ($items as $item) {
+
+                $value=$item->item_price*$item->items_remaining;
                 $response .= "<tr>
                                         <td>" . $item->id . "</td>
                                         <td>" . $item->item_name . "</td>
-                                        <td>" . $item->categoryData->category_name . "</td>
                                         <td>" . $item->items_remaining . "</td>
-                                        <td>" . $item->lower_limit . "</td>
+                                        <td>" . $item->item_price . "</td>
+                                        <td>" . $value . "</td>
                                         <td>" . $item->createdByUser->name . "</td>
                                         <td>" . $item->created_at . "</td>
-                                        <td>" . $item->updated_at . "</td>
                                         <td>" . $item->getIsActiveItemAttribute() . "</td>
                                         <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
                                         data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
@@ -112,6 +114,7 @@ class ItemsNewController extends Controller
                 'item_name' => ['required', 'string', 'max:255'],
                 'category_id' => ['required'],
                 'user_id_hidden2' => ['required'],
+                'item_price' => ['numeric','min:0'],
                 'lower_limit' => ['required', 'numeric', 'min:0'],
             ]);
             $ItemsNew = ItemsNew::find($request->item_Id_hidden);
@@ -119,6 +122,7 @@ class ItemsNewController extends Controller
             $ItemsNew->update([
                 'item_name' => $input['item_name'],
                 'category_id' => $input['category_id'],
+                'item_price' => $input['item_price'],
                 'lower_limit' => $input['lower_limit'],
                 'created_by' => $input['user_id_hidden2'],
             ]);

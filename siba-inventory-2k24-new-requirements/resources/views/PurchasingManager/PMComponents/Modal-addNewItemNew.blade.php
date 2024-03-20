@@ -28,6 +28,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label" for="item-name">Item Price</label>
+                        <input type="text" class="form-control" id="item_price" name="item_price"
+                            placeholder="Enter Item Price" />
+                        <div class="input-error text-danger" style="display: none"></div>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label" for="product_name">Category</label>
                         <select class="form-select" id="category_id1" name="category_id" aria-label="category_name">
                             <option disabled selected hidden>Select an option</option>
