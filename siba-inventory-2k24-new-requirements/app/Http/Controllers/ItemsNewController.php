@@ -58,13 +58,13 @@ class ItemsNewController extends Controller
                 "<table id='all_item_data' class='display'>
                     <thead>
                         <tr>
-                        <th>Id</th>
                         <th>Reference</th>
                         <th>Category</th>
                         <th>Item Name</th>
                         <th>Balance</th>
                         <th>Item_Price</th>
                         <th>Value</th>
+                        <th>Limit</th>
                         <th>Created By</th>
                         <th>Created At</th>
                         <th>Status</th>
@@ -75,15 +75,15 @@ class ItemsNewController extends Controller
 
                     foreach ($items as $item) {
                         $value = $item->item_price * $item->items_remaining;
-                        $trStyle = ($item->items_remaining <= $item->lower_limit) ? 'color: red;' : '';
-                        $response .= "<tr style='{$trStyle}'>
-                                            <td>" . $item->id . "</td>
-                                            <td>" . $item->item_ref . "</td>
+                        $limitStyle = ($item->items_remaining <= $item->lower_limit) ? 'color: red;' : '';
+                        $response .= "<tr>
+                                            <td style='{$limitStyle}'>" . $item->item_ref . "</td>
                                             <td>" . $item->categoryData->category_name . "</td>
-                                            <td>" . $item->item_name . "</td>
-                                            <td>" . $item->items_remaining . "</td>
+                                            <td style='{$limitStyle}'>" . $item->item_name . "</td>
+                                            <td style='{$limitStyle}'>" . $item->items_remaining . "</td>
                                             <td>" . $item->item_price . "</td>
                                             <td>" . $value . "</td>
+                                            <td style='{$limitStyle}'>" . $item->lower_limit . "</td>
                                             <td>" . $item->createdByUser->name . "</td>
                                             <td>" . $item->created_at . "</td>
                                             <td>" . $item->getIsActiveItemAttribute() . "</td>

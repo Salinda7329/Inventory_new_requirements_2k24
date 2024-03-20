@@ -156,6 +156,8 @@ Route::middleware([
     Route::post('/pm/Category/update', [CategoryController::class, 'update'])->name('category.update');
     // route to get all category details table
     Route::get('/categories/fetchAllCategoryData', [CategoryController::class, 'fetchAllCategoryData'])->name('fetchAllCategoryData');
+     //route to fetch all items under a category
+     Route::get('/pm/ViewItemsUnderCategory/{category_id}', [CategoryController::class, 'fetchItemsUnderCategory']);
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\ItemsNew;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Doctrine\DBAL\Query\QueryException;
@@ -53,6 +54,7 @@ class CategoryController extends Controller
                         <tr>
                         <th>Category ID</th>
                         <th>Category Name</th>
+                        <th>View</th>
                         <th>Created By</th>
                         <th>Created At</th>
                         <th>Status</th>
@@ -66,6 +68,7 @@ class CategoryController extends Controller
                     "<tr>
                             <td>" . $category->id . "</td>
                             <td>" . $category->category_name . "</td>
+                            <td><a href='/pm/ViewItemsUnderCategory/". $category->id."'>View</a></td>
                             <td>" . $category->createdByUser->name . "</td>
                             <td>" . $category->created_at . "</td>
                             <td>" . $category->getIsActiveCategoryAttribute() . "</td>
@@ -112,5 +115,17 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         return response()->json($categories);
+    }
+
+    public function fetchItemsUnderCategory($category_id)
+    {
+        // Fetch the product based on the provided product ID
+        $category = Category::find($category_id);
+
+        // Fetch all items under the specified product ID
+        $items = ItemsNew::where('category_id', $category_id)->get();
+
+        // Pass the fetched product and items to the view
+        return view('PurchasingManager.PMComponents.view-items-under-category', compact('category', 'items'));
     }
 }
