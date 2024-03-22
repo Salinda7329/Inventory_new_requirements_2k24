@@ -208,53 +208,6 @@
                     });
                 }
 
-                // fetch products
-                $.ajax({
-                    url: '{{ route('products.fetch') }}',
-                    method: 'get',
-                    success: function(products) {
-                        updateProductDropdown(products);
-                    }
-                });
-
-                // Function to update the product dropdown
-                function updateProductDropdown(products) {
-                    var productDropdown = $('#product_id1');
-                    productDropdown.empty(); // Clear existing options
-
-                    // Add default option
-                    productDropdown.append('<option disabled selected hidden>Select a Product</option>');
-
-                    // Populate the dropdown with products
-                    $.each(products, function(index, product) {
-                        productDropdown.append('<option value="' + product.id + '">' + product
-                            .product_name + '</option>');
-                    });
-                }
-
-                // fetch categories
-                $.ajax({
-                    url: '/categories/fetch',
-                    method: 'get',
-                    success: function(categories) {
-                        updateCategoryDropdown(categories);
-                    }
-                });
-
-                // Function to update the brand dropdown
-                function updateCategoryDropdown(categories) {
-                    var categoryDropdown = $('#category_id1');
-                    categoryDropdown.empty(); // Clear existing options
-
-                    // Add default option
-                    categoryDropdown.append('<option disabled selected hidden>Select a Category</option>');
-
-                    // Populate the dropdown with categories
-                    $.each(categories, function(index, category) {
-                        categoryDropdown.append('<option value="' + category.id + '">' + category
-                            .category_name + '</option>');
-                    });
-                }
 
             });
         </script>

@@ -110,9 +110,10 @@ Route::middleware([
 
     //create new stock post route
     Route::post('/pm/addNewStockItem', [InputsController::class, 'create']);
-
     //route to fetch all new stock item data
     Route::get('/fetchAllNewStockData', [InputsController::class, 'fetchAllNewStockData']);
+     //route to edit input stock data
+     Route::get('/pm/input/edit', [InputsController::class, 'edit']);
 
     //issue items to users
     Route::get('/pm/issueItems', [IssuesController::class, 'index']);

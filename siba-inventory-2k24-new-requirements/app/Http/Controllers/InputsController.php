@@ -115,7 +115,7 @@ class InputsController extends Controller
                                         <td>" . $item->updated_at . "</td>
                                         <td>" . $item->getIsActiveInputttribute() . "</td>
                                         <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
-                                        data-bs-target='#modaleditInput' class='editItemButton'>Edit</a>
+                                        data-bs-target='#modaleditInput' class='editInputButton'>Edit</a>
                                         </td>
                                     </tr>";
             }
@@ -129,6 +129,33 @@ class InputsController extends Controller
             echo $response;
         } else {
             echo "<h3 align='center'>No Records in Database</h3>";
+        }
+    }
+
+    // public function edit(Request $request)
+    // {
+    //     $input_Id = $request->input_Id;
+    //     $input = Input::find($input_Id);
+    //     return response()->json($input);
+    // }
+
+    public function edit(Request $request)
+    {
+        $input_Id = $request->input_Id;
+        $input = Input::find($input_Id);
+
+        if ($input) {
+            // Assuming getPoData() is the relationship method defined in Input model
+            $po_no = $input->getPoData->po_no;
+
+            // Include both input data and po_no in the response
+            return response()->json([
+                'input' => $input,
+                'old_po_no' => $po_no
+            ]);
+        } else {
+            // Handle case when input is not found
+            return response()->json(['error' => 'Input not found'], 404);
         }
     }
 }

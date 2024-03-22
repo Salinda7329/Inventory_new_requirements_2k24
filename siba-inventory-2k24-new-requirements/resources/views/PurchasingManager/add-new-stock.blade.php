@@ -1,9 +1,8 @@
 @extends('PurchasingManager.PM-layout')
 
 @section('content')
-    @include('PurchasingManager.PMComponents.Modal-EditStock')
 
-    <div class="container-xxl">
+<div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
             @include('PurchasingManager.PMComponents.Modal-addNewStock')
             <br><br>
@@ -21,6 +20,7 @@
 
             </div>
         </div>
+        @include('PurchasingManager.PMComponents.Modal-EditStock')
     </div>
 
     <!-- Include the necessary dependencies for exporting Excel -->
