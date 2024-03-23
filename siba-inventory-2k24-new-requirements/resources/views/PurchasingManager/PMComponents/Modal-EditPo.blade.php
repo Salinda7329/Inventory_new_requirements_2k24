@@ -94,7 +94,7 @@
                                         // Enable horizontal scrolling
                                         // "scrollX": true,
                                         order: [
-                                            [0, 'desc']
+                                            [5, 'desc']
                                         ]
                                     });
                                 }

@@ -190,7 +190,7 @@
                             // //Make table a data table
                             $('#all_item_data').DataTable({
                                 order: [
-                                    [0, 'desc']
+                                    [8, 'desc']
                                 ],
                                 // pageLength: 25,
                             });

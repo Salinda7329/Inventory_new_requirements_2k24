@@ -87,9 +87,9 @@ class InputsController extends Controller
 
             $response .=
                 "<table id='all_new_stock_data' class='display'>
-                    <thead>
-                        <tr>
-                        <th>Transaction No</th>
+                <thead>
+                <tr>
+                <th>Transaction No</th>
                         <th>PO No</th>
                         <th>Item Reference</th>
                         <th>Item</th>
@@ -105,8 +105,8 @@ class InputsController extends Controller
 
             foreach ($items as $item) {
                 $response .= "<tr>
-                                        <td>" . $item->id . "</td>
-                                        <td>" . $item->getPoData->po_no . "</td>
+                        <td>" . $item->id . "</td>
+                        <td>" . $item->getPoData->po_no . "</td>
                                         <td>" . $item->getmainItemRef->item_ref . "</td>
                                         <td>" . $item->getmainItemData->item_name . "</td>
                                         <td>" . $item->count . "</td>
@@ -117,7 +117,7 @@ class InputsController extends Controller
                                         <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
                                         data-bs-target='#modaleditInput' class='editInputButton'>Edit</a>
                                         </td>
-                                    </tr>";
+                                        </tr>";
             }
 
 
@@ -146,16 +146,61 @@ class InputsController extends Controller
 
         if ($input) {
             // Assuming getPoData() is the relationship method defined in Input model
-            $po_no = $input->getPoData->po_no;
+            $po_id = $input->getPoData->po_id;
 
             // Include both input data and po_no in the response
             return response()->json([
                 'input' => $input,
-                'old_po_no' => $po_no
+                'po_id' => $po_id
             ]);
         } else {
             // Handle case when input is not found
             return response()->json(['error' => 'Input not found'], 404);
+        }
+    }
+
+    public function update(Request $request)
+    {
+        try {
+            // Validate the input
+            $input = $request->validate([
+                'user_id_hidden2' => ['required', 'numeric'],
+                'input_id_hidden' => ['required', 'numeric'],
+                'po_no10' => ['required', 'numeric'],
+                'item_id2' => ['required', 'numeric'],
+                'item_count2' => ['required', 'numeric', 'min:1'],
+            ]);
+
+            // Find the input record by its ID
+            $inputRecord = Input::findOrFail($input['input_id_hidden']);
+
+            // Check if any value is edited
+            if (
+                $inputRecord->po_id != $input['po_no10'] ||
+                $inputRecord->item_id != $input['item_id2'] ||
+                $inputRecord->count != $input['item_count2']
+            ) {
+
+                // Update the input record with new values
+                $inputRecord->update([
+                    'po_id' => $input['po_no10'],
+                    'item_id' => $input['item_id2'],
+                    'count' => $input['item_count2'],
+                ]);
+
+                // Return success response after updating the input record
+                return response()->json(['message' => 'Input record updated successfully.', 'status' => 200]);
+            } else {
+                // If no values are edited, return a response indicating no changes
+                return response()->json(['message' => 'No changes were made.', 'status' => 204]);
+            }
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return response()->json(['errors' => $e->errors(), 'status' => 422]);
+        } catch (\Exception $e) {
+            // Log the error
+            \Log::error($e);
+            return response()->json(['error' => 'Failed to update input record.', 'status' => 500]);
         }
     }
 }

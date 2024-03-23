@@ -114,6 +114,8 @@ Route::middleware([
     Route::get('/fetchAllNewStockData', [InputsController::class, 'fetchAllNewStockData']);
      //route to edit input stock data
      Route::get('/pm/input/edit', [InputsController::class, 'edit']);
+     //route to update input stock data
+     Route::post('/pm/UpdateInputDetails', [InputsController::class, 'update']);
 
     //issue items to users
     Route::get('/pm/issueItems', [IssuesController::class, 'index']);

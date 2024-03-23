@@ -166,7 +166,7 @@
                                         // Enable horizontal scrolling
                                         // "scrollX": true,
                                         order: [
-                                            [0, 'desc']
+                                            [8, 'desc']
                                         ],
                                         // pageLength: 25,
                                     });
