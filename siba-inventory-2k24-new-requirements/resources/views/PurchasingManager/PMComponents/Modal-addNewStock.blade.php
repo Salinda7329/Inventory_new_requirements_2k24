@@ -189,13 +189,13 @@
 
                 function fetchAllNewStockData() {
                     $.ajax({
-                        url: '/view-low-items',
+                        url: '/fetchAllNewStockData',
                         method: 'get',
                         success: function(response) {
                             // console.log(response);
                             $('#show_all_item_data').html(response);
                             // //Make table a data table
-                            $('#all_low_item_data').DataTable({
+                            $('#all_new_stock_data').DataTable({
                                 // Enable horizontal scrolling
                                 // "scrollX": true,
                                 order: [

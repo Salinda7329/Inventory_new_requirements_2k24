@@ -135,7 +135,7 @@ Route::middleware([
         return view('PurchasingManager.view-issued-items-data');
     });
     //view issued items data function
-    Route::get('/view-issued-items-details', [ItemsNewController::class, 'fetchAllIssuedItemsDataNew']);
+    Route::get('/view-issued-items-details', [IssuesController::class, 'fetchAllIssuedItemsDataNew']);
 
 
     //create new issue
