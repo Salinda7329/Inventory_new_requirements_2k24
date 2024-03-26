@@ -73,10 +73,10 @@ class ItemsNewController extends Controller
                     </thead>
                     <tbody>";
 
-                    foreach ($items as $item) {
-                        $value = $item->item_price * $item->items_remaining;
-                        $limitStyle = ($item->items_remaining <= $item->lower_limit) ? 'color: red;' : '';
-                        $response .= "<tr>
+            foreach ($items as $item) {
+                $value = $item->item_price * $item->items_remaining;
+                $limitStyle = ($item->items_remaining <= $item->lower_limit) ? 'color: red;' : '';
+                $response .= "<tr>
                                             <td style='{$limitStyle}'>" . $item->item_ref . "</td>
                                             <td>" . $item->categoryData->category_name . "</td>
                                             <td style='{$limitStyle}'>" . $item->item_name . "</td>
@@ -91,7 +91,7 @@ class ItemsNewController extends Controller
                                             data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
                                             </td>
                                         </tr>";
-                    }
+            }
 
 
 
@@ -106,16 +106,17 @@ class ItemsNewController extends Controller
     }
 
     public function fetchAllLowItemDataNew()
-{
-    // Fetch items with balance less than lower limit
-    $items = ItemsNew::whereRaw('items_remaining <= lower_limit')->get();
+    {
+        // Fetch items with is active 1
+        $items = ItemsNew::All()->where('isActive', 1);
 
-    // Return response
-    $response = '';
 
-    if ($items->count() > 0) {
-        $response .=
-            "<table id='all_low_item_data' class='display'>
+        // Return response
+        $response = '';
+
+        if ($items->count() > 0) {
+            $response .=
+                "<table id='all_low_item_data' class='display'>
                 <thead>
                     <tr>
                         <th>Reference</th>
@@ -133,10 +134,16 @@ class ItemsNewController extends Controller
                 </thead>
                 <tbody>";
 
-        foreach ($items as $item) {
-            $value = $item->item_price * $item->items_remaining;
-            $limitStyle = 'color: red;';
-            $response .= "<tr>
+            foreach ($items as $item) {
+                $currentItemCount = $item->items_remaining;
+                $lowerLimit = $item->lower_limit;
+
+                if ($currentItemCount <= $lowerLimit) {
+
+
+                    $value = $item->item_price * $item->items_remaining;
+                    $limitStyle = 'color: red;';
+                    $response .= "<tr>
                                 <td style='{$limitStyle}'>" . $item->item_ref . "</td>
                                 <td>" . $item->categoryData->category_name . "</td>
                                 <td style='{$limitStyle}'>" . $item->item_name . "</td>
@@ -151,16 +158,17 @@ class ItemsNewController extends Controller
                                     data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
                                 </td>
                             </tr>";
-        }
+                }
+            }
 
-        $response .= "</tbody>
+            $response .= "</tbody>
             </table>";
 
-        echo $response;
-    } else {
-        echo "<h3 align='center'>No Records in Database</h3>";
+            echo $response;
+        } else {
+            echo "<h3 align='center'>No Records in Database</h3>";
+        }
     }
-}
 
 
     public function edit(Request $request)

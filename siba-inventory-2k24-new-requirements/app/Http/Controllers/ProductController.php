@@ -264,7 +264,7 @@ class ProductController extends Controller
                 ->count();
             $damagedItemCount = Item::where('product_id', $product->id)
                 ->where('isActive', 1)
-                ->where('condition', 2) // Only include items with condition 1 (damaged items)
+                ->where('condition', 2) // Only include items with condition 2
                 ->count();
 
             $lowerLimit = $product->lower_limit;
