@@ -134,8 +134,13 @@ Route::middleware([
     Route::get('/pm/view-issued-items-details', function () {
         return view('PurchasingManager.view-issued-items-data');
     });
+    Route::get('/pm/view-issued-items-details-report', function () {
+        return view('PurchasingManager.view-issued-items-data-report');
+    });
     //view issued items data function
     Route::get('/view-issued-items-details', [IssuesController::class, 'fetchAllIssuedItemsDataNew']);
+    //report
+    Route::get('/view-issued-items-details-report', [IssuesController::class, 'fetchAllIssuedItemsDataNew']);
 
 
     //create new issue

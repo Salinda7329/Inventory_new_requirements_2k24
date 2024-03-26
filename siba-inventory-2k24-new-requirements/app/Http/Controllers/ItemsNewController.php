@@ -126,10 +126,8 @@ class ItemsNewController extends Controller
                         <th>Item_Price</th>
                         <th>Value</th>
                         <th>Limit</th>
-                        <th>Created By</th>
-                        <th>Created At</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>Last Stock In</th>
+                        <th style='display:none'>Updated At</th>
                     </tr>
                 </thead>
                 <tbody>";
@@ -151,12 +149,8 @@ class ItemsNewController extends Controller
                                 <td>" . $item->item_price . "</td>
                                 <td>" . $value . "</td>
                                 <td style='{$limitStyle}'>" . $item->lower_limit . "</td>
-                                <td>" . $item->createdByUser->name . "</td>
-                                <td>" . $item->created_at . "</td>
-                                <td>" . $item->getIsActiveItemAttribute() . "</td>
-                                <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
-                                    data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
-                                </td>
+                                <td>" . ($item->lastStockInput ? ($item->lastStockInput->updated_at ?? 'N/A') : 'N/A') . "</td>
+                                <td style='display:none'>" . $item->updated_at . "</td>
                             </tr>";
                 }
             }

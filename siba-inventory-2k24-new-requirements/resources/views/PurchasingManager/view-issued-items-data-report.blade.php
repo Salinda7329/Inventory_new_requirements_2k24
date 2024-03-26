@@ -1,19 +1,19 @@
 @extends('PurchasingManager.PM-layout')
 
 @section('content')
-    <div class="container-xxl">
+
+<div class="container-xxl">
         <div class="authentication-wrapper authentication-basic container-p-y">
-            {{-- @include('PurchasingManager.PMComponents.Modal-addNewStock') --}}
             <br><br>
             <div class="authentication-inner">
                 <div class="card">
                     <div class="card-header">
-                        Low Level Item Details
+                        Issued Items Details
                         <!-- Button to trigger the Excel export -->
                         <button type="button" class="btn btn-success float-end" id="exportExcel">Export to Excel</button>
                     </div>
                     <div class="card-body">
-                        <div id="show_all_low_item_data"></div>
+                        <div id="show_all_issued_items_data"></div>
                     </div>
                 </div>
 
@@ -150,24 +150,39 @@
                     $('.input-error').hide();
                 });
 
+                // function fetchAllNewStockData() {
+                //     $.ajax({
+                //         url: '/view-low-items',
+                //         method: 'get',
+                //         success: function(response) {
+                //             // console.log(response);
+                //             $('#show_all_low_item_data').html(response);
+                //             // //Make table a data table
+                //             $('#all_low_item_data').DataTable({
+                //                 // Enable horizontal scrolling
+                //                 // "scrollX": true,
+                //                 order: [
+                //                     [0, 'desc']
+                //                 ]
+                //             });
+                //         }
+
+
+                //     });
+                // }
+
                 function fetchAllNewStockData() {
                     $.ajax({
-                        url: '/view-low-items',
+                        url: '/view-issued-items-details-report',
                         method: 'get',
                         success: function(response) {
-                            // console.log(response);
-                            $('#show_all_low_item_data').html(response);
-                            // //Make table a data table
-                            $('#all_low_item_data').DataTable({
-                                // Enable horizontal scrolling
-                                // "scrollX": true,
+                            $('#show_all_issued_items_data').html(response);
+                            $('#all_issued_items_data').DataTable({
                                 order: [
-                                    [7, 'desc']
+                                    [0, 'desc']
                                 ]
                             });
                         }
-
-
                     });
                 }
 
@@ -189,14 +204,14 @@
             // Add click event listener to the export button
             $('#exportExcel').click(function() {
                 // Disable DataTables pagination temporarily
-                var dataTable = $('#all_low_item_data').DataTable();
+                var dataTable = $('#all_issued_items_data').DataTable();
                 dataTable.page.len(-1).draw();
 
-                // Get the HTML content of the table inside show_all_low_item_data div
-                var htmlTable = document.getElementById('show_all_low_item_data').outerHTML;
+                // Get the HTML content of the table inside show_all_item_data div
+                var htmlTable = document.getElementById('show_all_issued_items_data').outerHTML;
 
                 // Convert the HTML table to a workbook
-                var workbook = XLSX.utils.table_to_book(document.getElementById('all_low_item_data'));
+                var workbook = XLSX.utils.table_to_book(document.getElementById('show_all_issued_items_data'));
 
                 // Generate a binary string from the workbook
                 var binaryString = XLSX.write(workbook, {
@@ -210,7 +225,7 @@
                 });
 
                 // Save the Blob as an Excel file
-                saveAs(blob, 'low_level_items_report.xlsx');
+                saveAs(blob, 'issued_items_for_departments_report.xlsx');
 
                 // Re-enable DataTables pagination after export
                 dataTable.page.len(10).draw(); // Change 10 to your desired page length

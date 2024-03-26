@@ -46,4 +46,9 @@ class ItemsNew extends Model
     {
         return $this->belongsTo(Input::class, 'id', 'item_id');
     }
+
+    public function lastStockInputPo()
+    {
+        return $this->belongsTo(Input::class, 'id', 'item_id');
+    }
 }

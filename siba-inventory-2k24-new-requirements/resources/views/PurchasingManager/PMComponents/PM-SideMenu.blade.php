@@ -176,7 +176,7 @@
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Low Limit Items</div>
             </a>
-            <a href="/pm/view-issued-items-details" class="menu-link">
+            <a href="/pm/view-issued-items-details-report" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Issued Items Details</div>
             </a>
