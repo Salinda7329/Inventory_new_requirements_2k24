@@ -105,6 +105,64 @@ class ItemsNewController extends Controller
         }
     }
 
+    public function fetchAllLowItemDataNew()
+{
+    // Fetch items with balance less than lower limit
+    $items = ItemsNew::whereRaw('items_remaining <= lower_limit')->get();
+
+    // Return response
+    $response = '';
+
+    if ($items->count() > 0) {
+        $response .=
+            "<table id='all_low_item_data' class='display'>
+                <thead>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Category</th>
+                        <th>Item Name</th>
+                        <th>Balance</th>
+                        <th>Item_Price</th>
+                        <th>Value</th>
+                        <th>Limit</th>
+                        <th>Created By</th>
+                        <th>Created At</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>";
+
+        foreach ($items as $item) {
+            $value = $item->item_price * $item->items_remaining;
+            $limitStyle = 'color: red;';
+            $response .= "<tr>
+                                <td style='{$limitStyle}'>" . $item->item_ref . "</td>
+                                <td>" . $item->categoryData->category_name . "</td>
+                                <td style='{$limitStyle}'>" . $item->item_name . "</td>
+                                <td style='{$limitStyle}'>" . $item->items_remaining . "</td>
+                                <td>" . $item->item_price . "</td>
+                                <td>" . $value . "</td>
+                                <td style='{$limitStyle}'>" . $item->lower_limit . "</td>
+                                <td>" . $item->createdByUser->name . "</td>
+                                <td>" . $item->created_at . "</td>
+                                <td>" . $item->getIsActiveItemAttribute() . "</td>
+                                <td><a href='#' id='" . $item->id . "'  data-bs-toggle='modal'
+                                    data-bs-target='#modaledititem' class='editItemButton'>Edit</a>
+                                </td>
+                            </tr>";
+        }
+
+        $response .= "</tbody>
+            </table>";
+
+        echo $response;
+    } else {
+        echo "<h3 align='center'>No Records in Database</h3>";
+    }
+}
+
+
     public function edit(Request $request)
     {
         $item_Id = $request->item_Id;

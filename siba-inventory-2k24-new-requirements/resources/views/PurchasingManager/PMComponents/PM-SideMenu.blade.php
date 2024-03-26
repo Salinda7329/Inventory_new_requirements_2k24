@@ -172,13 +172,13 @@
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Reports</span></li>
         <!-- Forms -->
         <li class="menu-item">
-            <a href="/pm/view-rejected-history" class="menu-link">
+            <a href="/pm/view-low-items" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Form Elements">Low Limit Items</div>
             </a>
-            <a href="/pm/view-issued-items-history" class="menu-link">
+            <a href="/pm/view-issued-items-details" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Form Elements">Issued Items History</div>
+                <div data-i18n="Form Elements">Issued Items Details</div>
             </a>
             <a href="/pm/view-rejected-return-history" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>

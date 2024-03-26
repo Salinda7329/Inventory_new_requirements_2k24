@@ -41,4 +41,9 @@ class ItemsNew extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+
+    public function lastStockInput()
+    {
+        return $this->belongsTo(Input::class, 'id', 'item_id');
+    }
 }

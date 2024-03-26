@@ -188,6 +188,12 @@ class InputsController extends Controller
                     'count' => $input['item_count2'],
                 ]);
 
+
+                // Update the items_remaining column in the items_new table
+                $item = ItemsNew::find($input['item_id2']);
+                $item->items_remaining += $input['item_count2'];
+                $item->save();
+
                 // Return success response after updating the input record
                 return response()->json(['message' => 'Input record updated successfully.', 'status' => 200]);
             } else {

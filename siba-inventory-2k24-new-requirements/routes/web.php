@@ -124,6 +124,20 @@ Route::middleware([
     //route to fetch department names and details
     Route::get('/fetchDepartmentData', [IssuesController::class, 'fetchDepartmentData']);
 
+    //view low level items page
+    Route::get('/pm/view-low-items', function () {
+        return view('PurchasingManager.view-low-items');
+    });
+    //view low level items function
+    Route::get('/view-low-items', [ItemsNewController::class, 'fetchAllLowItemDataNew']);
+    //view issued items details
+    Route::get('/pm/view-issued-items-details', function () {
+        return view('PurchasingManager.view-issued-items-data');
+    });
+    //view issued items data function
+    Route::get('/view-issued-items-details', [ItemsNewController::class, 'fetchAllIssuedItemsDataNew']);
+
+
     //create new issue
     Route::post('/pm/issueItemtoDept', [IssuesController::class, 'create']);
      //route to fetch all issue data
