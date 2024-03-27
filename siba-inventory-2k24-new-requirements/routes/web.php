@@ -112,10 +112,10 @@ Route::middleware([
     Route::post('/pm/addNewStockItem', [InputsController::class, 'create']);
     //route to fetch all new stock item data
     Route::get('/fetchAllNewStockData', [InputsController::class, 'fetchAllNewStockData']);
-     //route to edit input stock data
-     Route::get('/pm/input/edit', [InputsController::class, 'edit']);
-     //route to update input stock data
-     Route::post('/pm/UpdateInputDetails', [InputsController::class, 'update']);
+    //route to edit input stock data
+    Route::get('/pm/input/edit', [InputsController::class, 'edit']);
+    //route to update input stock data
+    Route::post('/pm/UpdateInputDetails', [InputsController::class, 'update']);
 
     //issue items to users
     Route::get('/pm/issueItems', [IssuesController::class, 'index']);
@@ -153,8 +153,8 @@ Route::middleware([
 
     //create new issue
     Route::post('/pm/issueItemtoDept', [IssuesController::class, 'create']);
-     //route to fetch all issue data
-     Route::get('/fetchAllIssueData', [IssuesController::class, 'fetchAllIssueData']);
+    //route to fetch all issue data
+    Route::get('/fetchAllIssueData', [IssuesController::class, 'fetchAllIssueData']);
 
     //add new products page
     Route::get('/pm/addNewProduct', function () {
@@ -186,8 +186,8 @@ Route::middleware([
     Route::post('/pm/Category/update', [CategoryController::class, 'update'])->name('category.update');
     // route to get all category details table
     Route::get('/categories/fetchAllCategoryData', [CategoryController::class, 'fetchAllCategoryData'])->name('fetchAllCategoryData');
-     //route to fetch all items under a category
-     Route::get('/pm/ViewItemsUnderCategory/{category_id}', [CategoryController::class, 'fetchItemsUnderCategory']);
+    //route to fetch all items under a category
+    Route::get('/pm/ViewItemsUnderCategory/{category_id}', [CategoryController::class, 'fetchItemsUnderCategory']);
 
 
 
@@ -348,7 +348,12 @@ Route::middleware([
     //home route
     Route::get('/storeManager/home', [StoreManagerDashboardController::class, 'index'])->name('storeManager.home');
 
-
+    //po page sm
+    Route::get('/pm/viewNewPO', function () {
+        return view('storeManager.view-po-sm');
+    });
+      //route to fetch all po data for sm
+      Route::get('/fetchAllPoData/sm', [PoController::class, 'fetchAllPoDataSM']);
 
     //view to see items with users
     Route::get('/storeManager/view-user-items', function () {
