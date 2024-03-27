@@ -229,7 +229,7 @@ class ItemsNewController extends Controller
         $term = $request->input('term');
 
         // Query the database to fetch item names and ids that match the user input
-        $items = ItemsNew::where('item_name', 'like', '%' . $term . '%')->get(['id', 'item_name']);
+        $items = ItemsNew::where('item_name', 'like', '%' . $term . '%')->where('isActive',1)->get(['id', 'item_name']);
 
         return response()->json($items);
     }
