@@ -143,6 +143,14 @@ Route::middleware([
     Route::get('/view-issued-items-details-report', [IssuesController::class, 'fetchAllIssuedItemsDataNew']);
 
 
+    //view stock input report view
+    Route::get('/pm/view-stock-input-history-report', function () {
+        return view('PurchasingManager.stock-record-report');
+    });
+    //report
+    Route::get('/view-issued-items-details-report', [IssuesController::class, 'fetchAllIssuedItemsDataNew']);
+
+
     //create new issue
     Route::post('/pm/issueItemtoDept', [IssuesController::class, 'create']);
      //route to fetch all issue data
