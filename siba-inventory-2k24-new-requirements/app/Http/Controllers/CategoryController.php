@@ -55,7 +55,7 @@ class CategoryController extends Controller
                         <tr>
                         <th>#</th>
                         <th>Category Name</th>
-                        <th>View</th>
+                        <th>View Items</th>
                         <th>Created By</th>
                         <th>Created At</th>
                         <th>Status</th>
@@ -69,7 +69,7 @@ class CategoryController extends Controller
                     "<tr>
                             <td>" . $rowNumber++ . "</td>
                             <td>" . $category->category_name . "</td>
-                            <td><a href='/pm/ViewItemsUnderCategory/" . $category->id . "'>View</a></td>
+                            <td><a href='/pm/ViewItemsUnderCategory/" . $category->id . "'>View Items</a></td>
                             <td>" . $category->createdByUser->name . "</td>
                             <td>" . $category->created_at . "</td>
                             <td>" . $category->getIsActiveCategoryAttribute() . "</td>
