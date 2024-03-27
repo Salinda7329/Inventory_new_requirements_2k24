@@ -114,7 +114,8 @@ class CategoryController extends Controller
 
     public function fetchCategories()
     {
-        $categories = Category::all();
+        // $categories = Category::all();
+        $categories = Category::where('isActive',1)->get();
         return response()->json($categories);
     }
 
