@@ -6,7 +6,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    Categories
+                    Categories Data Table <i class='bx bxs-info-square' title="This table shows the existing store Categories."></i>
                 </div>
                 <div class="card-body">
                     <div id="show_all_category_data"></div>

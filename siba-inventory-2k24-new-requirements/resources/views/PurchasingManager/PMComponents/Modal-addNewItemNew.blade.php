@@ -1,5 +1,5 @@
 <!-- Button to trigger the modal -->
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewitem">
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewitem" title="Add a new Item name under a category.">
     Add New Item
 </button>
 

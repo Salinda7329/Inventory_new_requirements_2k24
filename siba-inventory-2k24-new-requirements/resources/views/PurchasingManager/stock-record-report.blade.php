@@ -7,9 +7,9 @@
             <div class="authentication-inner">
                 <div class="card">
                     <div class="card-header">
-                        Stock Input Table
+                        Stock Input Table <i class='bx bxs-info-square' title="This table shows the Stock Input Data"></i>
                         <!-- Button to trigger the Excel export -->
-                        <button type="button" class="btn btn-success float-end" id="exportExcel">Export to Excel</button>
+                        <button type="button" class="btn btn-success float-end" id="exportExcel" title="Export Stock Input Data table to an Excel Sheet">Export to Excel</button>
                     </div>
                     <div class="card-body">
                         <div id="show_all_item_data"></div>

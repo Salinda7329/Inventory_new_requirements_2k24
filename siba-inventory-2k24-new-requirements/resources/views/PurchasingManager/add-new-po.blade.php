@@ -9,7 +9,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Purchasing Orders
+                        Purchasing Orders Data Table <i class='bx bxs-info-square' title="This table shows the records of Purchasing Orders."></i>
                     </div>
                     <div class="card-body">
                         <div id="show_all_item_data"></div>

@@ -1,5 +1,5 @@
 <!-- Button to trigger the modal -->
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewitem">
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewitem" title="Add the new PO data. Then add the new Stock in Stock Input.">
     Add New PO
 </button>
 

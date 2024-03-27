@@ -26,9 +26,9 @@
         <div class="authentication-inner">
             <div class="card">
                 <div class="card-header">
-                    Store Items List
+                    Store Items List Table <i class='bx bxs-info-square' title="This table shows the existing Item Names in the Store."></i>
                     <!-- Button to trigger the Excel export -->
-                    <button type="button" class="btn btn-success float-end" id="exportExcel">Export to Excel</button>
+                    <button type="button" class="btn btn-success float-end" id="exportExcel" title="Export Store Items List Table to an Excel Sheet">Export to Excel</button>
                 </div>
                 <div class="card-body">
                     <div id="show_all_item_data"></div>

@@ -8,9 +8,9 @@
             <div class="authentication-inner">
                 <div class="card">
                     <div class="card-header">
-                        Issued Items Details
+                        Issued Items Details <i class='bx bxs-info-square' title="This table shows the details of Issued Items for Departments"></i>
                         <!-- Button to trigger the Excel export -->
-                        <button type="button" class="btn btn-success float-end" id="exportExcel">Export to Excel</button>
+                        <button type="button" class="btn btn-success float-end" id="exportExcel" title="Export the Issued Item Details data to an Excel Sheet">Export to Excel</button>
                     </div>
                     <div class="card-body">
                         <div id="show_all_issued_items_data"></div>

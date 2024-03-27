@@ -8,9 +8,9 @@
             <div class="authentication-inner">
                 <div class="card">
                     <div class="card-header">
-                        Low Level Item Details
+                        Low Level Item Details <i class='bx bxs-info-square' title="This Table shows the Items under their lower limit"></i>
                         <!-- Button to trigger the Excel export -->
-                        <button type="button" class="btn btn-success float-end" id="exportExcel">Export to Excel</button>
+                        <button type="button" class="btn btn-success float-end" id="exportExcel" title="Export the Low Level Item Details table to an Excel Sheet">Export to Excel</button>
                     </div>
                     <div class="card-body">
                         <div id="show_all_low_item_data"></div>

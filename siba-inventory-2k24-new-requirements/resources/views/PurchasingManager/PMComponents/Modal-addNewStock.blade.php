@@ -1,5 +1,5 @@
 <!-- Button to trigger the modal -->
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewStockitem">
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalAddnewStockitem" title="Add new Stock to an Existing item.">
     Add New Stock Item
 </button>
 
