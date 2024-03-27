@@ -152,7 +152,7 @@
                         // Close the modal directly
                         $('#modalAddnewStockitem').modal('hide');
                         // Example: Display a success message or update the UI
-                        alert('Item created successfully!');
+                        alert('Stock Input successful!');
                         // reset form
                         $('#createItemsForm')[0].reset();
                         // You can update the UI or perform other actions here

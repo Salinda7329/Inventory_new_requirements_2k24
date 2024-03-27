@@ -163,7 +163,7 @@
                                         $('#UpdateInputDetailsForm')[0].reset(); // Reset the form
                                         $('#modaleditInput').modal('hide'); // Hide the modal
                                         fetchAllNewStockData(); // Fetch product data from database
-                                        alert('Item updated successfully!');
+                                        alert('Stock In Record updated successfully!');
                                     } else if (response.status === 422) {
                                         var errors = response.errors;
 
@@ -172,7 +172,7 @@
                                             field.next('.input-error').text(errors[key][0]).show();
                                         }
                                     } else {
-                                        alert('Failed to Update item. Please try again.');
+                                        alert('Failed to Update Stock In. Please try again.');
                                         $('#UpdateInputDetailsForm')[0].reset();
                                         fetchAllNewStockData();
                                     }

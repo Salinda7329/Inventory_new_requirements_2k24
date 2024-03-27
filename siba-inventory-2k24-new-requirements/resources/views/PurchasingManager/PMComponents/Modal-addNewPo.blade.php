@@ -98,7 +98,7 @@
                                 // Close the modal directly
                                 $('#modalAddnewitem').modal('hide');
                                 // Example: Display a success message or update the UI
-                                alert('Item created successfully!');
+                                alert('PO Inserted successfully!');
                                 // reset form
                                 $('#createItemsForm')[0].reset();
                                 // You can update the UI or perform other actions here
@@ -121,7 +121,7 @@
                             } else {
                                 // Handle other status codes if needed
                                 // For example, display an error message
-                                alert('Failed to create item. Please try again.');
+                                alert('Failed to create PO. Please try again.');
                                 // reset form
                                 $('#createItemsForm')[0].reset();
                             }

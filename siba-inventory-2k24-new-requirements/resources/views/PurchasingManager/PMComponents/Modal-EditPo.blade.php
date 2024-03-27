@@ -120,7 +120,7 @@
                                 success: function(response) {
                                     // console.log(response);
                                     if (response.status == 200) {
-                                        alert('Item updated successfully!');
+                                        alert('PO updated successfully!');
                                         $('#UpdateItemDetailsForm')[0].reset();
                                         $('#modaleditpo').modal('hide');
                                         // fetch product data from database
