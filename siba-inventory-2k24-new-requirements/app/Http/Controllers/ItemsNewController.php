@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ItemsNew;
+use App\Models\Category;
 use Doctrine\DBAL\Query\QueryException;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
@@ -217,9 +218,17 @@ class ItemsNewController extends Controller
         }
     }
 
+    // public function fetchItemName()
+    // {
+    //     $items = ItemsNew::select('id', 'item_name')->where('isActive',1)->get(); // Select id and item_name from ItemsNew
+
+    //     return response()->json($items);
+    // }
     public function fetchItemName()
     {
-        $items = ItemsNew::select('id', 'item_name')->where('isActive',1)->get(); // Select id and item_name from ItemsNew
+        $items = ItemsNew::select('id', 'item_name')
+            ->where('isActive', 1)
+            ->get();
 
         return response()->json($items);
     }
@@ -229,7 +238,7 @@ class ItemsNewController extends Controller
         $term = $request->input('term');
 
         // Query the database to fetch item names and ids that match the user input
-        $items = ItemsNew::where('item_name', 'like', '%' . $term . '%')->where('isActive',1)->get(['id', 'item_name']);
+        $items = ItemsNew::where('item_name', 'like', '%' . $term . '%')->where('isActive', 1)->get(['id', 'item_name']);
 
         return response()->json($items);
     }
