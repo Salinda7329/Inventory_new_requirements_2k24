@@ -1,12 +1,12 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-            <span class="app-brand-logo demo">
+        <span class="app-brand-logo demo">
 
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">Welcome !</span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">Welcome !</span>
 
-        <a href="" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-            <i class="bx bx-chevron-left bx-sm align-middle"></i>
-        </a>
+            <a href="" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                <i class="bx bx-chevron-left bx-sm align-middle"></i>
+            </a>
     </div>
 
     <div class="menu-inner-shadow"></div>
@@ -45,16 +45,26 @@
         </li>
 
         <li class="menu-item" id="3">
-            <a href="/pm/addNewCategory" class="menu-link" >
+            <a href="/pm/addNewCategory" class="menu-link">
                 <div data-i18n="Without menu">Manage Categories</div>
             </a>
         </li>
 
-        <li class="menu-item" id="2">
-            <a href="/pm/addNewPONew" class="menu-link" >
-                <div data-i18n="Without menu">Manage Purchasing Orders</div>
-            </a>
-        </li>
+        @if (Auth::user()->role == 3)
+            <li class="menu-item" id="2">
+                <a href="/pm/addNewPONew" class="menu-link">
+                    <div data-i18n="Without menu">Manage Purchasing Orders</div>
+                </a>
+            </li>
+        @endif
+
+        @if (Auth::user()->role == 2)
+            <li class="menu-item" id="2">
+                <a href="/pm/viewNewPO" class="menu-link">
+                    <div data-i18n="Without menu">Manage Purchasing Orders</div>
+                </a>
+            </li>
+        @endif
 
 
 

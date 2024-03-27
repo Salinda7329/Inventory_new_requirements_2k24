@@ -48,8 +48,12 @@
 </head>
 
 <body>
-
-    @include('PurchasingManager.PMComponents.PM-SideMenu')
+    @if (Auth::user()->role == 3)
+        @include('PurchasingManager.PMComponents.PM-SideMenu')
+    @endif
+    @if (Auth::user()->role == 2)
+        @include('publicComponent.left-side-menu-storemanager')
+    @endif
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
