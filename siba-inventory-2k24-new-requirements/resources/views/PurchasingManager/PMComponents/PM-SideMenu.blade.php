@@ -1,12 +1,10 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
             <span class="app-brand-logo demo">
 
                 <span class="app-brand-text demo menu-text fw-bolder ms-2">Welcome !</span>
-        </a>
 
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+        <a href="" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
         </a>
     </div>
@@ -15,7 +13,7 @@
 
     <ul class="menu-inner py-1">
         <!-- Dashboard -->
-        <li class="menu-item active" id="1">
+        <li class="menu-item" id="1">
             <a href="/home" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
@@ -28,16 +26,15 @@
             <span class="menu-header-text">Inventory</span>
         </li>
 
-
-        <li class="menu-item" id="2">
-            <a href="/pm/addNewPONew" class="menu-link" >
-                <div data-i18n="Without menu">Manage Purchasing Orders</div>
+        <li class="menu-item" id="6">
+            <a href="/pm/issueItems" class="menu-link">
+                <div data-i18n="Without menu">Issue Items</div>
             </a>
         </li>
 
-        <li class="menu-item" id="3">
-            <a href="/pm/addNewCategory" class="menu-link" >
-                <div data-i18n="Without menu">Manage Categories</div>
+        <li class="menu-item" id="5">
+            <a href="/pm/addNewStock" class="menu-link">
+                <div data-i18n="Without menu">Input Stock</div>
             </a>
         </li>
 
@@ -47,18 +44,19 @@
             </a>
         </li>
 
-
-        <li class="menu-item" id="5">
-            <a href="/pm/addNewStock" class="menu-link">
-                <div data-i18n="Without menu">Input Stock</div>
+        <li class="menu-item" id="3">
+            <a href="/pm/addNewCategory" class="menu-link" >
+                <div data-i18n="Without menu">Manage Categories</div>
             </a>
         </li>
 
-        <li class="menu-item" id="6">
-            <a href="/pm/issueItems" class="menu-link">
-                <div data-i18n="Without menu">Issue Items</div>
+        <li class="menu-item" id="2">
+            <a href="/pm/addNewPONew" class="menu-link" >
+                <div data-i18n="Without menu">Manage Purchasing Orders</div>
             </a>
         </li>
+
+
 
 
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Reports</span></li>
