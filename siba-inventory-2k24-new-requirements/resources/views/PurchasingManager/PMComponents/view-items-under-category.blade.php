@@ -31,6 +31,7 @@
                                     <th>Limit</th>
                                     <th>Created By</th>
                                     <th>Created_at</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,6 +47,7 @@
                                         <td style="{{ $limitStyle }}">{{ $item->lower_limit }}</td>
                                         <td>{{ $item->createdByUser->name }}</td>
                                         <td>{{ $item->created_at }}</td>
+                                        <td>{!! $item->getIsActiveItemAttributeBlade() !!}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

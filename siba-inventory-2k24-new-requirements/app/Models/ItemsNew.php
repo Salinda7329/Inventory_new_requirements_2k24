@@ -32,6 +32,18 @@ class ItemsNew extends Model
         return $status[$this->attributes['isActive']] ?? 'Unknown Status';
     }
 
+    public function getIsActiveItemAttributeBlade()
+    {
+        $status = [
+            1 => '<span style="color: green;">Active</span>',
+            2 => '<span style="color: red;">Deactivated</span>',
+            3 => '<span style="color: red;">Deleted</span>',
+            // Add more statuses as needed
+        ];
+
+        return $status[$this->isActive] ?? 'Unknown';
+    }
+
     public function categoryData()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
