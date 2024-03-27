@@ -219,7 +219,7 @@ class ItemsNewController extends Controller
 
     public function fetchItemName()
     {
-        $items = ItemsNew::select('id', 'item_name')->get(); // Select id and item_name from ItemsNew
+        $items = ItemsNew::select('id', 'item_name')->where('isActive',1)->get(); // Select id and item_name from ItemsNew
 
         return response()->json($items);
     }

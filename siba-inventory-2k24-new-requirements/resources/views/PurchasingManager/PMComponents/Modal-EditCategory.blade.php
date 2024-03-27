@@ -25,16 +25,17 @@
                             autocomplete="category_name" />
                     </div>
 
-
-                    <div class="mb-3">
-                        <label for="status" class="form-label">Select Status</label>
-                        <select class="form-control" id="status2" name="status2">
-                            <option disabled selected hidden>Select a Status</option>
-                            <option value="1">Active</option>
-                            <option value="2">Deactive</option>
-                            <option value="3">Delete</option>
-                        </select>
-                    </div>
+                    @if (Auth::user()->role == 3)
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Select Status</label>
+                            <select class="form-control" id="status2" name="status2">
+                                <option disabled selected hidden>Select a Status</option>
+                                <option value="1">Active</option>
+                                <option value="2">Deactive</option>
+                                <option value="3">Delete</option>
+                            </select>
+                        </div>
+                    @endif
 
 
                     <button class="btn btn-primary d-grid w-100" id="Update_category_button">Update</button>
