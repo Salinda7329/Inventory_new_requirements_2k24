@@ -1,5 +1,5 @@
 <!-- Button to trigger the modal -->
-<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalIssueStockitem">
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalIssueStockitem" title="Issue items from the stores to a department.">
     Issue Items to Department
 </button>
 
@@ -27,7 +27,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="item-name">Item Name</label>
                         <input type="text" class="form-control" id="item_name" name="item_name_selection"
-                            placeholder="Enter Item Name" />
+                            placeholder="Enter Item Name" title="Start typing the item name. Then select from the dropdown list"/>
                         <div class="input-error text-danger" style="display: none"></div>
                         <div id="item-suggestions" class="dropdown-menu" style="display: none"></div>
                     </div>
@@ -35,7 +35,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="item-name">Quantity</label>
                         <input type="text" class="form-control" id="item_count" name="count"
-                            placeholder="Enter Item Count" />
+                            placeholder="Enter Item Count" title="Add the item quantity to issue"/>
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
@@ -50,7 +50,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="item-name">Issue Remark</label>
                         <input type="text" class="form-control" id="remark" name="issue_remark"
-                            placeholder="Enter Issue Remark" />
+                            placeholder="Enter Issue Remark" title="Type a remark Ex:Who accept the item."/>
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 

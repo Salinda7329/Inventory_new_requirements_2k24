@@ -9,9 +9,9 @@
 
                 <div class="card">
                     <div class="card-header">
-                        Issuence Table
+                        Issuence Record Table <i class='bx bxs-info-square' title="This table shows the records of issued items."></i>
                         <!-- Button to trigger the Excel export -->
-                        <button type="button" class="btn btn-success float-end" id="exportExcel">Export to Excel</button>
+                        <button type="button" class="btn btn-success float-end" id="exportExcel" title="Click this button to export the Issuence record table to an Excel Sheet">Export to Excel</button>
                     </div>
                     <div class="card-body">
                         <div id="show_all_issue_data"></div>
