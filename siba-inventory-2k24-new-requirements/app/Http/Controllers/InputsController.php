@@ -166,6 +166,7 @@ class InputsController extends Controller
             $input = $request->validate([
                 'user_id_hidden2' => ['required', 'numeric'],
                 'input_id_hidden' => ['required', 'numeric'],
+                'count_hidden' => ['required'],
                 'po_no10' => ['required', 'numeric'],
                 'item_id2' => ['required', 'numeric'],
                 'item_count2' => ['required', 'numeric', 'min:1'],
@@ -191,7 +192,7 @@ class InputsController extends Controller
 
                 // Update the items_remaining column in the items_new table
                 $item = ItemsNew::find($input['item_id2']);
-                $item->items_remaining += $input['item_count2'];
+                $item->items_remaining += ($input['item_count2']- $input['count_hidden']);
                 $item->save();
 
                 // Return success response after updating the input record
