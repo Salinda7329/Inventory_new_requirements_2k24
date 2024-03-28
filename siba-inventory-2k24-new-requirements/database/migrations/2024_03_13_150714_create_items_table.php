@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('items_remaining')->default(0);
             $table->string('lower_limit')->default(0);
             $table->string('item_price')->default(0);
+            $table->decimal('item_price', 10, 2)->default(0);
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->boolean('isActive')->default(1);
             // $table->foreignId('updated_by')->nullable()->constrained('users');
