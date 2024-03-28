@@ -23,14 +23,14 @@
                     <div class="mb-3">
                         <label class="form-label" for="item-name">PO Number</label>
                         <input type="text" class="form-control" id="po_no" name="po_no"
-                            placeholder="Enter PO Number" />
+                            placeholder="Enter PO Number" required/>
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="item-name">PO Image</label>
                         <input type="file" class="form-control" id="po_image" name="po_image"
-                            placeholder="Enter PO Image" />
+                            placeholder="Enter PO Image" required/>
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
 

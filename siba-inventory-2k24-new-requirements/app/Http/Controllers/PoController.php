@@ -44,6 +44,45 @@ class PoController extends Controller
         }
     }
 
+    // public function create(Request $request)
+    // {
+    //     // Check if a file has been uploaded
+    //     if ($request->hasFile('po_image')) {
+    //         $file = $request->file('po_image');
+    //         $fileName = time() . '.' . $file->getClientOriginalExtension();
+    //         $file->storeAs('public/assets/po_images', $fileName);
+    //     } else {
+    //         // Handle the case where no file is uploaded
+    //         // For example, you can set $fileName to null or provide a default value
+    //         $fileName = null; // or set to a default image filename
+    //     }
+
+    //     try {
+    //         $input = $request->validate([
+    //             'po_no' => ['required', 'string', 'max:255', 'unique:porders'],
+    //             // Remove 'required' validation for po_image since it's optional now
+    //             'user_id_hidden' => ['required'],
+    //         ]);
+
+    //         // Create the new item using the Porder model
+    //         Porder::create([
+    //             'po_no' => $input['po_no'],
+    //             'image' => $fileName, // Use the $fileName variable
+    //             'created_by' => $input['user_id_hidden'],
+    //         ]);
+
+    //         // Return the success response after the PO is created
+    //         return response()->json(['message' => 'New PO created successfully.', 'status' => 200]);
+    //     } catch (ValidationException $e) {
+    //         // Handle validation errors
+    //         return response()->json(['errors' => $e->errors(), 'status' => 422]);
+    //     } catch (QueryException $e) {
+    //         // Log the error if needed: \Log::error($e);
+    //         return response()->json(['error' => 'Failed to create PO.', 'status' => 500]);
+    //     }
+    // }
+
+
     public function fetchAllPoData()
     {
 
@@ -243,7 +282,4 @@ class PoController extends Controller
 
         return response()->json($formattedPos);
     }
-
-
-
 }
