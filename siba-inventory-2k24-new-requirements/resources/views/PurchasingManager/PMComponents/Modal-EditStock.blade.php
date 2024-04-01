@@ -129,6 +129,7 @@
                                     $('#input_id_hidden2').val(response.input.id);
                                     $('#po_no10').val(response.input.po_id);
                                     $('#item_count2').val(response.input.count);
+                                    $('#count_hidden2').val(response.input.count);
                                     $('#input_id_hidden2').val(response.input.id);
                                     $('#item_id2').val(response.input.item_id);
                                 }
