@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Imports;
+
+use App\Models\Grn; // Assuming Grn is the model representing your data
+use App\Models\Input;
+use App\Models\Item;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Illuminate\Support\Collection;
+
+class GrnImport implements ToCollection
+{
+    /**
+     * @param Collection $collection
+     */
+    public function collection(Collection $rows)
+    {
+
+        $requested_by = $rows[6][2];
+        $company = $rows[6][5];
+        $good_receiving_note_number = $rows[7][2];
+        $item_to_be_used_location = $rows[7][5];
+        $handed_over_by = $rows[8][2];
+        $handed_over_date = $rows[8][5];
+        $received_by = $rows[9][2];
+        $received_date = $rows[9][5];
+        // 'item_number' => $row[12][3],
+        // 'quantity' => $row[12][2],
+
+        // Create Grn instance and save using User-No mode
+        $Grn = new Grn([
+            'requested_by' => $requested_by,
+            'company' => $company,
+            'good_receiving_note_number' => $good_receiving_note_number,
+            'item_to_be_used_location' => $item_to_be_used_location,
+            'handed_over_by' => $handed_over_by,
+            'handed_over_date' => $handed_over_date,
+            'received_by' => $received_by,
+            'received_date' => $received_date,
+        ]);
+
+        // Save the grn instance
+        $Grn->save();
+
+        // Access data from cells A6, A7, A8 for both "Name" and "Town"
+        // $item_ids = [$rows[12][3], $rows[13][3]]; // Name cells
+        // $quantities = [$rows[12][2], $rows[13][2]]; // Town cells
+
+        // Access data from cells A6, A7, A8 for both "Name" and "Town"
+        $item_ids = [];
+        $quantities = [];
+
+        // Start from row index 12 for "Name" and "Town"
+        $start_row_index = 12;
+        // Column index for "Name" (A)
+        $name_column_index = 3;
+        // Column index for "Town" (B)
+        $town_column_index = 2;
+
+        // Iterate over the rows starting from the specified index
+        for ($row_index = $start_row_index; $row_index < $rows->count(); $row_index++) {
+            // Get the name and town from the respective columns
+            $item_id = $rows[$row_index][$name_column_index];
+            $quantity = $rows[$row_index][$town_column_index];
+
+            // Add the name and town to their respective arrays
+            $item_ids[] = $item_id;
+            $quantities[] = $quantity;
+        }
+
+        // Create Input instances for each name and town
+        foreach ($item_ids as $key => $item_id) {
+            $quantity = $quantities[$key];
+
+            // Create Input instance and save
+            $newInput = new Input([
+                'grn_no' => $good_receiving_note_number,
+                'item_id' => $item_id,
+                'quantity' => $quantity,
+            ]);
+            $newInput->save();
+
+            // Update item balance
+            $item = Item::find($item_id);
+            if ($item) {
+                $item->balance += $quantity;
+                $item->save();
+            }
+        }
+    }
+}

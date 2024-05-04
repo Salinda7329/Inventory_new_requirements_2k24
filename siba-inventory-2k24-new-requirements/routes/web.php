@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GrnController;
 use App\Http\Controllers\InputsController;
 use App\Http\Controllers\IssuesController;
 use App\Http\Controllers\ItemsController;
@@ -331,6 +332,16 @@ Route::middleware([
     //route to fetch all rejected requests history
     Route::post('/pm/fetchAllRejectReturnsHistoryPM', [RequestsController::class, 'fetchAllRejectReturnsHistoryPM'])->name('fetchAllRejectReturnsHistoryPM');
 });
+
+//to view grns page
+Route::get('/pm/viewNewGrn', function () {
+    return view('storeManager.view-grns-sm');
+});
+
+//Grn import
+Route::get('grn/import', [GrnController::class, 'index']);
+Route::post('grn/import', [GrnController::class, 'import_grn_data']);
+
 //--------------End purchasing manager routes-----------------
 
 
@@ -352,8 +363,8 @@ Route::middleware([
     Route::get('/pm/viewNewPO', function () {
         return view('storeManager.view-po-sm');
     });
-      //route to fetch all po data for sm
-      Route::get('/fetchAllPoData/sm', [PoController::class, 'fetchAllPoDataSM']);
+    //route to fetch all po data for sm
+    Route::get('/fetchAllPoData/sm', [PoController::class, 'fetchAllPoDataSM']);
 
     //view to see items with users
     Route::get('/storeManager/view-user-items', function () {
