@@ -339,8 +339,7 @@ Route::get('/pm/viewNewGrn', function () {
 });
 
 //Grn import
-Route::get('grn/import', [GrnController::class, 'index']);
-Route::post('grn/import', [GrnController::class, 'import_grn_data']);
+Route::post('/grn/import', [GrnController::class, 'import_grn_data']);
 
 //--------------End purchasing manager routes-----------------
 

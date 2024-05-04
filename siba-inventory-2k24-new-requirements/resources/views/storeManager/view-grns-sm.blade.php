@@ -11,6 +11,12 @@
                     <div class="card-header">
                         Purchasing Orders Data Table <i class='bx bxs-info-square'
                             title="This table shows the records of Purchasing Orders."></i>
+                        @if (session()->has('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+
                     </div>
                     <div class="card-body">
                         <div id="show_all_item_data"></div>

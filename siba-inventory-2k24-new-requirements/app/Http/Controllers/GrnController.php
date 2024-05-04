@@ -9,16 +9,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class GrnController extends Controller
 {
-    public function index()
-    {
-
-        $grns = Grn::all();
-        return view('grn.index', compact('grns'));
-    }
-
     public function import_grn_data(Request $request)
     {
 
+        // dd($request->all());
         // Validate the request
         $request->validate([
             'import_file' => 'required|file|mimes:xlsx,xls,csv'

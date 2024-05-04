@@ -8,28 +8,22 @@
     <div class="modal-dialog"> <!-- Adjust the modal size as needed -->
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAddnewitemLabel">Add New PO</h5>
+                <h5 class="modal-title" id="modalAddnewitemLabel">Import GRN File</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
-                <form id="createItemsForm" class="mb-3" method="POST" action="#" enctype="multipart/form-data">
+                <form id="importGrnForm" class="mb-3" method="POST" action="/grn/import" enctype="multipart/form-data">
                     @csrf
 
                     {{-- hidden field to store user_id --}}
                     <input type="text" value="{{ Auth::user()->id }}" name="user_id_hidden" id="user_id_hidden"
                         hidden>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="item-name">PO Number</label>
-                        <input type="text" class="form-control" id="po_no" name="po_no"
-                            placeholder="Enter PO Number" required/>
-                        <div class="input-error text-danger" style="display: none"></div>
-                    </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="item-name">PO Image</label>
-                        <input type="file" class="form-control" id="po_image" name="po_image"
+                        <label class="form-label" for="item-name">GRN Excel File</label>
+                        <input type="file" class="form-control" id="import_file" name="import_file"
                             placeholder="Enter PO Image" required/>
                         <div class="input-error text-danger" style="display: none"></div>
                     </div>
@@ -38,7 +32,7 @@
                     <div class="mb-3">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             id="btnClose">Close</button>
-                        <button type="submit" id="createNewProduct" class="btn btn-primary">Add New PO
+                        <button type="submit" id="importGrn" class="btn btn-primary">Import
                         </button>
                     </div>
 
@@ -47,11 +41,11 @@
             </div>
         </div>
 
-        <script>
+        {{-- <script>
             $(document).ready(function() {
 
                 // // Select the form using its id
-                var form = $('#createItemsForm');
+                var form = $('#importGrnForm');
 
                 // Attach the input event handler to the form inputs
                 form.find('input, select').on('input', function() {
@@ -71,10 +65,10 @@
 
 
                 // fetch all po data from database
-                fetchAllPoData();
+                // fetchAllPoData();
 
                 // Add a submit event listener to the form
-                form.submit(function(event) {
+                // form.submit(function(event) {
                     // Prevent the default form submission behavior
                     event.preventDefault();
                     // Serialize the form data into a URL-encoded string
@@ -82,7 +76,7 @@
 
                     // Use jQuery Ajax to send a POST request with the form data
                     $.ajax({
-                        url: '/pm/newPo',
+                        url: '{{ url("/grn/import") }}',
                         type: 'POST',
                         data: formData,
                         contentType: false,
@@ -208,7 +202,7 @@
                 }
 
             });
-        </script>
+        </script> --}}
 
 
     </div>
