@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\Grn; // Assuming Grn is the model representing your data
 use App\Models\Input;
 use App\Models\Item;
+use App\Models\ItemsNew;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Validators\ValidationException;
@@ -17,7 +18,7 @@ class GrnImport implements ToCollection
      */
     public function collection(Collection $rows)
     {
-        // try {
+        try {
 
             $requested_by = $rows[6][2];
             $company = $rows[6][5];
@@ -27,8 +28,6 @@ class GrnImport implements ToCollection
             $handed_over_date = $rows[8][5];
             $received_by = $rows[9][2];
             $received_date = $rows[9][5];
-            // 'item_number' => $row[12][3],
-            // 'quantity' => $row[12][2],
 
             // Create Grn instance and save using User-No mode
             $Grn = new Grn([
@@ -45,67 +44,88 @@ class GrnImport implements ToCollection
             // Save the grn instance
             $Grn->save();
 
-
-
+            // Access data from cells A6, A7, A8 for both "Name" and "Town"
+            $item_ids = [$rows[12][3], $rows[13][3]]; // Name cells
+            $quantities = [$rows[12][2], $rows[13][2]]; // Town cells
 
             // Access data from cells A6, A7, A8 for both "Name" and "Town"
-            // $item_ids = [$rows[12][3], $rows[13][3]]; // Name cells
-            // $quantities = [$rows[12][2], $rows[13][2]]; // Town cells
-
-            // Access data from cells A6, A7, A8 for both "Name" and "Town"
-            // $item_ids = [];
-            // $quantities = [];
+            $item_ids = [];
+            $quantities = [];
 
             // Start from row index 12 for "Name" and "Town"
-            // $start_row_index = 12;
+            $start_row_index = 12;
             // Column index for "Name" (A)
-            // $name_column_index = 3;
+            $name_column_index = 3;
             // Column index for "Town" (B)
-            // $town_column_index = 2;
+            $town_column_index = 2;
 
             // Iterate over the rows starting from the specified index
-            // for ($row_index = $start_row_index; $row_index < $rows->count(); $row_index++) {
-            //     // Get the name and town from the respective columns
-            //     $item_id = $rows[$row_index][$name_column_index];
-            //     $quantity = $rows[$row_index][$town_column_index];
+            for ($row_index = $start_row_index; $row_index < $rows->count(); $row_index++) {
+                // Get the name and town from the respective columns
+                $item_id = $rows[$row_index][$name_column_index];
+                $quantity = $rows[$row_index][$town_column_index];
 
-            //     // Add the name and town to their respective arrays
-            //     $item_ids[] = $item_id;
-            //     $quantities[] = $quantity;
-            // }
+                // Add the name and town to their respective arrays if they are not null
+                if ($item_id !== null && $quantity !== null) {
+                    // Add the name and town to their respective arrays
+                    $item_ids[] = $item_id;
+                    $quantities[] = $quantity;
+                }
+            }
 
+            // Print the arrays
+            // dd($item_ids, $quantities);
+
+            $inputArray = []; // Define an empty array to store newInput objects
             // Create Input instances for each name and town
-        //     foreach ($item_ids as $key => $item_id) {
-        //         $quantity = $quantities[$key];
+            foreach ($item_ids as $key => $item_id) {
+                $quantity = $quantities[$key];
 
-        //         // Create Input instance and save
-        //         $newInput = new Input([
-        //             'grn_no' => $good_receiving_note_number,
-        //             'item_id' => $item_id,
-        //             'quantity' => $quantity,
-        //         ]);
-        //         $newInput->save();
+                // Create Input instance and save
+                $newInput = new Input([
+                    // 'grn_no' => $good_receiving_note_number,
+                    'po_id' => $good_receiving_note_number,
+                    'item_id' => $item_id,
+                    'count' => $quantity,
+                    'created_by' => 1,
+                    // 'po_id' => 21,
+                    // 'item_id' => 49,
+                    // 'count' => 150,
+                    // 'created_by' => 1,
+                ]);
 
-        //         // Update item balance
-        //         $item = Item::find($item_id);
-        //         if ($item) {
-        //             $item->balance += $quantity;
-        //             $item->save();
-        //         }
-        //     }
-        // } catch (ValidationException $e) {
-        //     // Handle validation errors
-        //     $failures = $e->failures();
-        //     foreach ($failures as $failure) {
-        //         $row = $failure->row(); // Row that failed validation
-        //         $errors = $failure->errors(); // Validation errors
-        //         // Handle or log validation errors
-        //     }
-        // } catch (\Exception $e) {
-        //     // Handle other exceptions
-        //     \Log::error('Error occurred during GRN import: ' . $e->getMessage());
-        //     // You can throw the exception again if you want to bubble it up
-        //     throw $e;
-        // }
+                $inputArray[] = $newInput; // Add newInput to the array
+                // Print the array after the loop
+                // dd($inputArray);
+
+                $newInput->save();
+
+
+                // Update item balance
+                $item = ItemsNew::find($item_id);
+
+
+                if ($item) {
+                    $item->items_remaining += $quantity;
+                    // Print the array after the loop
+                    $item->save();
+                    $itemArray[] = $item; // Add newInput to the array
+                }
+                // dd($itemArray);
+            }
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            $failures = $e->failures();
+            foreach ($failures as $failure) {
+                $row = $failure->row(); // Row that failed validation
+                $errors = $failure->errors(); // Validation errors
+                // Handle or log validation errors
+            }
+        } catch (\Exception $e) {
+            // Handle other exceptions
+            \Log::error('Error occurred during GRN import: ' . $e->getMessage());
+            // You can throw the exception again if you want to bubble it up
+            throw $e;
+        }
     }
 }
