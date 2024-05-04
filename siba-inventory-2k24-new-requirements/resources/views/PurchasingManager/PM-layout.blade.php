@@ -85,7 +85,7 @@
                     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
                     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
-                    <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
+                    {{-- <script src="{{ asset('assets/vendor/js/menu.js') }}"></script> --}}
                     <!-- endbuild -->
 
                     <!-- Vendors JS -->
@@ -105,7 +105,7 @@
                     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
                     {{-- to highlight left menue bar item when clicked --}}
-                    <script src="{{ asset('assets/js/left-side-bar-clicked-item-highlight.js') }}"></script>
+                    {{-- <script src="{{ asset('assets/js/left-side-bar-clicked-item-highlight.js') }}"></script> --}}
 
                 </div>
             </div>
