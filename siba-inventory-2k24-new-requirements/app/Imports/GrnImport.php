@@ -45,11 +45,11 @@ class GrnImport implements ToCollection
             $Grn->save();
 
             // Access data from cells A6, A7, A8 for both "Name" and "Town"
-            $item_ids = [$rows[12][3], $rows[13][3]]; // Name cells
+            $item_refs = [$rows[12][3], $rows[13][3]]; // Name cells
             $quantities = [$rows[12][2], $rows[13][2]]; // Town cells
 
             // Access data from cells A6, A7, A8 for both "Name" and "Town"
-            $item_ids = [];
+            $item_refs = [];
             $quantities = [];
 
             // Start from row index 12 for "Name" and "Town"
@@ -59,17 +59,25 @@ class GrnImport implements ToCollection
             // Column index for "Town" (B)
             $town_column_index = 2;
 
+            // define item ids array
+            $item_ids = [];
+
             // Iterate over the rows starting from the specified index
             for ($row_index = $start_row_index; $row_index < $rows->count(); $row_index++) {
                 // Get the name and town from the respective columns
-                $item_id = $rows[$row_index][$name_column_index];
+                $item_ref = $rows[$row_index][$name_column_index];
                 $quantity = $rows[$row_index][$town_column_index];
 
                 // Add the name and town to their respective arrays if they are not null
-                if ($item_id !== null && $quantity !== null) {
-                    // Add the name and town to their respective arrays
-                    $item_ids[] = $item_id;
-                    $quantities[] = $quantity;
+                if ($item_ref !== null && $quantity !== null) {
+                    // Find the ItemsNew model with the given item_ref
+                    $item = ItemsNew::where('item_ref', $item_ref)->first();
+
+                    // If item exists, get its ID and add it to the array
+                    if ($item) {
+                        $item_ids[] = $item->id;
+                        $quantities[] = $quantity;
+                    }
                 }
             }
 
@@ -111,7 +119,7 @@ class GrnImport implements ToCollection
                     $item->save();
                     $itemArray[] = $item; // Add newInput to the array
                 }
-                // dd($itemArray);
+                // dd($inputArray);
             }
         } catch (ValidationException $e) {
             // Handle validation errors

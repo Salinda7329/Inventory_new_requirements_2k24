@@ -74,7 +74,7 @@ class GrnImport implements ToCollection
             }
 
             // Print the arrays
-            // dd($item_ids, $quantities);
+            dd($item_ids, $quantities);
 
             $inputArray = []; // Define an empty array to store newInput objects
             // Create Input instances for each name and town
