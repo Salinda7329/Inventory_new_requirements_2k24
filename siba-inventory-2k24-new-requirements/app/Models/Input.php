@@ -10,6 +10,7 @@ class Input extends Model
     use HasFactory;
     protected $fillable = [
         'po_id',
+        'grn_no',
         'item_id',
         'count',
         'created_by',

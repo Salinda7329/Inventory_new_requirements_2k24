@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('inputs', function (Blueprint $table) {
             $table->id();
+            $table->string('grn_no')->nullable();
             $table->foreignId('po_id')->nullable()->constrained('porders');
-            $table->foreignId('item_id')->nullable()->constrained('itemsnew');
+            $table->foreignId('item_id')->nullable()->constrained('items_news');
             $table->string('count')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->boolean('isActive')->default(1);
