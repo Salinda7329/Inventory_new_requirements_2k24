@@ -45,6 +45,11 @@
                 <div data-i18n="Without menu">Manage Categories</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="/pm/addNewCategory" class="menu-link">
+                <div data-i18n="Without menu">Manage Categories</div>
+            </a>
+        </li>
 
         @if (Auth::user()->role == 3)
             <li class="menu-item">
@@ -61,6 +66,12 @@
                 </a>
             </li>
         @endif
+
+        <li class="menu-item">
+            <a href="/pm/viewNewGrn" class="menu-link">
+                <div data-i18n="Without menu">Import GRN's</div>
+            </a>
+        </li>
 
         <li class="menu-header small text-uppercase"><span class="menu-header-text">Reports</span></li>
         <!-- Forms -->
@@ -83,11 +94,11 @@
 </aside>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         var currentPageUrl = window.location.pathname;
         var menuItems = document.querySelectorAll('.menu-item');
 
-        menuItems.forEach(function (item) {
+        menuItems.forEach(function(item) {
             var link = item.querySelector('a');
             var href = link.getAttribute('href');
             if (currentPageUrl === href) {

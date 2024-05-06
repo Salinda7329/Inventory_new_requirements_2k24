@@ -331,12 +331,13 @@ Route::middleware([
     })->name('storeManager.rejected.returns');
     //route to fetch all rejected requests history
     Route::post('/pm/fetchAllRejectReturnsHistoryPM', [RequestsController::class, 'fetchAllRejectReturnsHistoryPM'])->name('fetchAllRejectReturnsHistoryPM');
+    
+    //to view grns page
+    Route::get('/pm/viewNewGrn', function () {
+        return view('storeManager.view-grns-sm');
+    });
 });
 
-//to view grns page
-Route::get('/pm/viewNewGrn', function () {
-    return view('storeManager.view-grns-sm');
-});
 
 //Grn import
 Route::post('/grn/import', [GrnController::class, 'import_grn_data']);
