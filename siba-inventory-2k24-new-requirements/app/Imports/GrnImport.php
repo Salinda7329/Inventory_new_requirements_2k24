@@ -91,8 +91,8 @@ class GrnImport implements ToCollection
 
                 // Create Input instance and save
                 $newInput = new Input([
-                    // 'grn_no' => $good_receiving_note_number,
-                    'po_id' => $good_receiving_note_number,
+                    'grn_no' => $good_receiving_note_number,
+                    // 'po_id' => $good_receiving_note_number,
                     'item_id' => $item_id,
                     'count' => $quantity,
                     'created_by' => 1,

@@ -45,11 +45,6 @@
                 <div data-i18n="Without menu">Manage Categories</div>
             </a>
         </li>
-        <li class="menu-item">
-            <a href="/pm/addNewCategory" class="menu-link">
-                <div data-i18n="Without menu">Manage Categories</div>
-            </a>
-        </li>
 
         @if (Auth::user()->role == 3)
             <li class="menu-item">
